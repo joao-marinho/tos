@@ -6,9 +6,11 @@
 
 - Baixar o node do site oficial nodejs.org
 - Para instalar siga os passos fornecidos no README deles, que é basicamente:
-	./configure
-	make
-	make install
+```
+./configure <br/>
+make
+make install
+```
 - Para ver se instalou certo, execute o comando "node --version" e "npm --version" 
 
 
@@ -21,8 +23,8 @@
 
 - Create a file ".env" following the steps in .env_example
 - Execute the following comands:
-	``` 
-	npm install
-	node_modules/node-pg-migrate/bin/pg-migrate up
-	npm start 
-	```
+```
+npm install
+node_modules/node-pg-migrate/bin/pg-migrate up
+npm start 
+```
