@@ -21,7 +21,7 @@
 ## Build
 
 - Create a file ".env" following the steps in .env_example
-
-npm install
-node_modules/node-pg-migrate/bin/pg-migrate up
-npm start
+- Execute the following comands:
+				npm install
+				node_modules/node-pg-migrate/bin/pg-migrate up
+				npm start
