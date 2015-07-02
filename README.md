@@ -7,7 +7,7 @@
 - Baixar o node do site oficial nodejs.org
 - Para instalar siga os passos fornecidos no README deles, que é basicamente:
 ```
-./configure <br/>
+./configure
 make
 make install
 ```
