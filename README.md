@@ -18,3 +18,10 @@
 - Seguir os passos no site http://www.postgresql.org/download/linux/ubuntu/, que é basicamente:
 	apt-get install postgresql-9.4
 
+## Build
+
+- Create a file ".env" following the steps in .env_example
+
+npm install
+node_modules/node-pg-migrate/bin/pg-migrate up
+npm start
