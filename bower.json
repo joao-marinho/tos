@@ -1,0 +1,16 @@
+{
+  "name": "tos",
+  "version": "0.0.0",
+  "homepage": "https://github.com/joao-marinho/tos",
+  "authors": [
+    "JoaoB <joao.batista665@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
