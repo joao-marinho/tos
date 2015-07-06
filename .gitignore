@@ -1,3 +1,4 @@
 node_modules/
 .env
 _test.js
+lib/bower_components
