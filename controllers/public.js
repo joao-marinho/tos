@@ -7,11 +7,6 @@ module.exports = function(models) {
     index: function(req, res) {
       console.log("on index public");
       res.render('public/index');
-      // User.all().then(function(users) {
-      //   res.render('users/index', { users: users });
-      // }).catch(function(err) {
-      //   console.log("err", err);
-      // });
     }
   };
 
