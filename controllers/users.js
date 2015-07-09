@@ -8,6 +8,9 @@ module.exports = function(models) {
       return User.all().then(function(users) {
         res.render('users/index', { users: users });
       });
+    },
+    new: function(req, res, next) {
+      res.render('users/new', {extends: "layout.jade"});
     }
   };
 

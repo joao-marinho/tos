@@ -22,7 +22,7 @@ module.exports = function(conf) {
         var oldHandler = handler;
         controller[action] = function(req, res, next) {
           var result = oldHandler(req, res, next);
-          if(typeof result.then == 'function' && typeof result.catch == 'function') {
+          if(result && typeof result.then == 'function' && typeof result.catch == 'function') {
             result.catch(function(err) {
               console.log(err);
               next(err);
