@@ -16,7 +16,24 @@ module.exports = function(conf) {
 
     controllerFilesNames.forEach(function(controllerFileName) {
       var controllerName = getName(controllerFileName);
-      controllers[controllerName] = require(path.join(conf.appDir, "controllers", controllerFileName))(conf.models);
+      var controller = require(path.join(conf.appDir, "controllers", controllerFileName))(conf.models);
+
+      _.forEach(controller, function(handler, action) {
+        var oldHandler = handler;
+        controller[action] = function(req, res, next) {
+          var result = oldHandler(req, res, next);
+          if(typeof result.then == 'function' && typeof result.catch == 'function') {
+            result.catch(function(err) {
+              console.log(err);
+              next(err);
+            });
+          }
+
+          return result;
+        };
+      });
+
+      controllers[controllerName] = controller;
     });
 
     resolve(controllers);
