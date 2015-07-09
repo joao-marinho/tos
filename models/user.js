@@ -7,6 +7,7 @@ module.exports = function(daos) {
 
   function User(user) {
     this.name = user.name;
+    this.id = user.id;
   }
 
   User.create = function(user) {
@@ -24,6 +25,15 @@ module.exports = function(daos) {
         user = result.rows[0];
 
         return new User(user);
+      });
+  }
+
+  User.all = function() {
+    return userDao.all().
+      then(function(result) {
+        return result.rows.map(function(user) {
+          return new User(user);
+        });
       });
   }
 

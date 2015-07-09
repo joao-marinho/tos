@@ -7,6 +7,9 @@ module.exports = function(db) {
     },
     find: function(id) {
       return db.query("SELECT * FROM users WHERE id = $1 LIMIT 1;", [id]);
+    },
+    all: function() {
+      return db.query("SELECT * FROM users;");
     }
   };
 };
