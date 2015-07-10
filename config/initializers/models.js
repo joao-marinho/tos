@@ -9,6 +9,46 @@ function getName(filename) {
   return _.capitalize(basename.toLowerCase());
 }
 
+function BasicModel(dao) {
+
+  function Model(modelRaw) {
+    var self = this;
+
+    dao.fieldNames.forEach(function(fieldName) {
+      self[fieldName] = modelRaw[fieldName];
+    });
+  }
+
+  Model.create = function(model) {
+    return dao.create(model).
+      then(function(result) {
+        var modelRaw = result.rows[0];
+
+        return new Model(modelRaw);
+      });
+  };
+
+  Model.find = function(id) {
+    return dao.find(id).
+      then(function(result) {
+        var modelRaw = result.rows[0];
+
+        return new Model(modelRaw);
+      });
+  }
+
+  Model.all = function() {
+    return dao.all().
+      then(function(result) {
+        return result.rows.map(function(user) {
+          return new Model(modelRaw);
+        });
+      });
+  }
+
+  return Model;
+}
+
 module.exports = function(conf) {
   return q.Promise(function(resolve, reject) {
     var models = {};
@@ -16,7 +56,7 @@ module.exports = function(conf) {
 
     modelFilesNames.forEach(function(modelFileName) {
       var modelName = getName(modelFileName);
-      models[modelName] = require(path.join(conf.appDir, "models", modelFileName))(conf.DAO);
+      models[modelName] = require(path.join(conf.appDir, "models", modelFileName))(conf.DAO, BasicModel);
     });
 
     resolve(models);
