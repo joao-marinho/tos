@@ -6,6 +6,7 @@ module.exports = function(conf) {
 
   app.get("/", controllers.Public.index);
   app.get("/users", controllers.Users.index);
-  
+
   app.get("/users/new", controllers.Users.new);
+  // app.get("/users/create", controllers.Users.create);
 };

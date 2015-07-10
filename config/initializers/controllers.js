@@ -29,6 +29,7 @@ module.exports = function(conf) {
             var scope = {};
             var result = oldHandler(scope);
             var renderPath = path.join(controllerName, action).toLowerCase();
+
             if(result && typeof result.then == 'function' && typeof result.catch == 'function') {
               result
               .then(function() {

@@ -11,6 +11,11 @@ module.exports = function(models) {
     },
     new: function(scope) {
     }
+    // create: function(scope) {
+    //   return User.create({nome: "Joao", email: "joao@joao.com"}).then(function(user) {
+    //     scope.user = user;
+    //   });
+    // }
   };
 
 };
