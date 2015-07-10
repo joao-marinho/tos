@@ -10,12 +10,21 @@ module.exports = function(models) {
       });
     },
     new: function(scope) {
+
+    },
+    create: function(req, res) {
+      var user = req.body.user;
+      // console.log("users from params", req.body.user);
+
+      return User.create(user).then(function(user) {
+        console.log(user);
+        res.render("users/create", {user: user});
+      });
     }
-    // create: function(scope) {
-    //   return User.create({nome: "Joao", email: "joao@joao.com"}).then(function(user) {
-    //     scope.user = user;
-    //   });
-    // }
   };
 
 };
+
+function permittedParams(user) {
+
+}

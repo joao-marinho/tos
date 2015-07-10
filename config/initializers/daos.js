@@ -23,6 +23,10 @@ BasicDao.prototype.create = function(resource) {
   var tableName = self.tableName;
 
   var values = fields.map(function(fieldName) {
+    var value = resource[fieldName];
+    if(value === '') {
+      return null;
+    }
     return resource[fieldName];
   });
   var values$ = "";

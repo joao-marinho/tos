@@ -8,5 +8,5 @@ module.exports = function(conf) {
   app.get("/users", controllers.Users.index);
 
   app.get("/users/new", controllers.Users.new);
-  // app.get("/users/create", controllers.Users.create);
+  app.post("/users/create", controllers.Users.create);
 };

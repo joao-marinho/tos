@@ -13,6 +13,7 @@ function BasicModel(dao) {
 
   function Model(modelRaw) {
     var self = this;
+    self.id = modelRaw.id;
 
     dao.fieldNames.forEach(function(fieldName) {
       self[fieldName] = modelRaw[fieldName];
@@ -40,7 +41,7 @@ function BasicModel(dao) {
   Model.all = function() {
     return dao.all().
       then(function(result) {
-        return result.rows.map(function(user) {
+        return result.rows.map(function(modelRaw) {
           return new Model(modelRaw);
         });
       });
