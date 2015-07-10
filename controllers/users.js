@@ -4,13 +4,12 @@ module.exports = function(models) {
   var User = models.User;
 
   return {
-    index: function(req, res, next) {
+    index: function(scope) {
       return User.all().then(function(users) {
-        res.render('users/index', { users: users });
+        scope.users = users;
       });
     },
-    new: function(req, res, next) {
-      res.render('users/new', {extends: "layout.jade"});
+    new: function(scope) {
     }
   };
 

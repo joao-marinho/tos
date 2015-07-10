@@ -2,6 +2,7 @@ var fs = require("fs");
 var path = require("path");
 var _ = require("lodash");
 var q = require("q");
+var getParameterNames = require('get-parameter-names')
 
 function getName(filename) {
   var extname = path.extname(filename);
@@ -20,17 +21,46 @@ module.exports = function(conf) {
 
       _.forEach(controller, function(handler, action) {
         var oldHandler = handler;
-        controller[action] = function(req, res, next) {
-          var result = oldHandler(req, res, next);
-          if(result && typeof result.then == 'function' && typeof result.catch == 'function') {
-            result.catch(function(err) {
-              console.log(err);
-              next(err);
-            });
-          }
+        var handlerParameters = getParameterNames(handler);
+        // console.log(path.join(controllerName, action).toLowerCase());
 
-          return result;
-        };
+        if(handlerParameters.length === 1 && handlerParameters[0] == "scope") {
+          controller[action] = function(req, res, next) {
+            var scope = {};
+            var result = oldHandler(scope);
+            var renderPath = path.join(controllerName, action).toLowerCase();
+            if(result && typeof result.then == 'function' && typeof result.catch == 'function') {
+              result
+              .then(function() {
+                res.render(renderPath, scope);
+              })
+              .catch(function(err) {
+                console.log(err);
+                next(err);
+              });
+            }
+            else {
+              res.render(renderPath, scope);
+            }
+
+            return result;
+          };
+        }
+        else {
+          controller[action] = function(req, res, next) {
+            var result = oldHandler(req, res, next);
+            if(result && typeof result.then == 'function' && typeof result.catch == 'function') {
+              result.catch(function(err) {
+                console.log(err);
+                next(err);
+              });
+            }
+
+            return result;
+          };
+        }
+
+
       });
 
       controllers[controllerName] = controller;
