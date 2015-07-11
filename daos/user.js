@@ -1,5 +1,4 @@
 module.exports = function(db, BasicDao) {
-  console.log("users");
   var fields = [
 		"nome",
 		"telefone",

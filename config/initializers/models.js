@@ -47,6 +47,15 @@ function BasicModel(dao) {
       });
   }
 
+  Model.where = function(queryObj) {
+    return dao.where(queryObj).
+      then(function(result) {
+        return result.rows.map(function(modelRaw) {
+          return new Model(modelRaw);
+        })
+      });
+  }
+
   return Model;
 }
 

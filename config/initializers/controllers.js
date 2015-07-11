@@ -26,7 +26,7 @@ module.exports = function(conf) {
 
         if(handlerParameters.length === 1 && handlerParameters[0] == "scope") {
           controller[action] = function(req, res, next) {
-            var scope = {};
+            var scope = {params: req.body, session: req.session};
             var result = oldHandler(scope);
             var renderPath = path.join(controllerName, action).toLowerCase();
 

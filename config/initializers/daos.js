@@ -51,6 +51,24 @@ BasicDao.prototype.all = function() {
   return self.db.query("SELECT * FROM "+self.tableName+";");
 };
 
+BasicDao.prototype.where = function(queryObj) {
+  var self = this;
+  var query = "";
+  var values = [];
+  _.forEach(queryObj, function(value, field) {
+    values.push(value);
+    query += field + " = $" + values.length + " AND ";
+  });
+
+  // Removing the last " AND "
+  query = query.substring(0, query.length - 5);
+  query += ";";
+
+  console.log(query);
+
+  return self.db.query("SELECT * FROM "+self.tableName+" WHERE "+query, values);
+};
+
 module.exports = function(conf) {
   return q.Promise(function(resolve, reject) {
     var Dao = {};

@@ -1,4 +1,3 @@
-var  router
 
 module.exports = function(conf) {
   var controllers = conf.controllers;
@@ -9,4 +8,7 @@ module.exports = function(conf) {
 
   app.get("/users/new", controllers.Users.new);
   app.post("/users/create", controllers.Users.create);
+
+  app.get("/sessions/new", controllers.Sessions.new);
+  app.post("/sessions/create", controllers.Sessions.create);
 };

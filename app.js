@@ -7,7 +7,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var initializer = require(path.join(__dirname, "config", "initializer"));
-
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 
 var app = express();
 
@@ -22,6 +23,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    store: new FileStore,
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+);
+
 
 initializer(app).then(function() {
   // catch 404 and forward to error handler
