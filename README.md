@@ -26,8 +26,8 @@ make install
 ```
 npm install
 node_modules/node-pg-migrate/bin/pg-migrate up
-npm start
 bower install
+npm start
 ```
 ## Errors
 
