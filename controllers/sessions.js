@@ -1,5 +1,6 @@
-module.exports = function(models) {
+module.exports = function(models, services) {
   var User = models.User;
+  var Authentication = services.Authentication;
 
   return {
     new: function(scope) {
@@ -8,24 +9,21 @@ module.exports = function(models) {
     create: function(req, res, next) {
       var email = req.body.user.email;
       var password = req.body.user.password;
+      var session = req.session;
 
-      return User.where({email: email, password: password}).then(function(users) {
+      return Authentication.login(email, password, session).then(function(user) {
+        res.redirect("/users");
+      }, function() {
         // Authentication fail
-        if(users.length !== 1) {
-          res.redirect("/sessions/new");
-        }
-        else {
-          req.session.isLogged = true;
-          req.session.userId = users[0].id;
-          res.redirect("/users");
-        }
+        res.redirect("/sessions/new");
       });
     },
     delete: function(req, res, next) {
-      req.session.isLogged = null;
-      req.session.userId = null;
+      var session = req.session;
 
-      res.redirect("/sessions/new");
+      return Authentication.logout(session).then(function() {
+        res.redirect("/sessions/new");
+      });
     }
   };
 

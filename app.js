@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    store: new FileStore,
+    store: new FileStore({ttl: 60 * 60 * 24 * 30}),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
@@ -65,6 +65,6 @@ initializer(app).then(function() {
     });
   });
 
-});
+}).done();
 
 module.exports = app;

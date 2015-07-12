@@ -17,7 +17,7 @@ module.exports = function(conf) {
 
     controllerFilesNames.forEach(function(controllerFileName) {
       var controllerName = getName(controllerFileName);
-      var controller = require(path.join(conf.appDir, "controllers", controllerFileName))(conf.models);
+      var controller = require(path.join(conf.appDir, "controllers", controllerFileName))(conf.models, conf.services);
 
       _.forEach(controller, function(handler, action) {
         var oldHandler = handler;
