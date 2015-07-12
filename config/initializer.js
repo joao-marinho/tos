@@ -36,6 +36,12 @@ module.exports = function(app) {
     .then(function(controllers) {
       conf.controllers = controllers;
 
+      console.log("Initializing middleware");
+      return require(path.join(__dirname, "initializers", "middleware"))(conf);
+    })
+    .then(function(middleware) {
+      conf.middleware = middleware;
+
       console.log("Initializing the router");
       return require(path.join(__dirname, "initializers", "router"))(conf);
     });
