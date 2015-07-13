@@ -10,14 +10,36 @@ function getName(filename) {
   return _.capitalize(basename.toLowerCase());
 }
 
+function readDirectory(controllers, relativePath, controllersPath, prepareController) {
+  var currentPath = path.join(controllersPath, relativePath);
+  var fileNames = fs.readdirSync(currentPath);
+
+  _.forEach(fileNames, function(filename) {
+    var pathComplete = path.join(currentPath, filename);
+    var fileStat = fs.statSync(pathComplete);
+    var currentRelativePath = path.join(relativePath, getName(filename).toLowerCase());
+
+    if(fileStat.isFile()) {
+      var controllerName = getName(filename);
+      var controller = require(pathComplete);
+
+      controllers[controllerName] = prepareController(controller, currentRelativePath);
+    }
+    else if(fileStat.isDirectory()) {
+      var directoryName = getName(filename);
+      controllers[directoryName] = {};
+      readDirectory(controllers[directoryName], currentRelativePath, controllersPath, prepareController);
+    }
+  });
+}
+
 module.exports = function(conf) {
   return q.Promise(function(resolve, reject) {
     var controllers = {};
-    var controllerFilesNames = fs.readdirSync(path.join(conf.appDir, "controllers"));
+    var controllersPath = path.join(conf.appDir, "controllers");
 
-    controllerFilesNames.forEach(function(controllerFileName) {
-      var controllerName = getName(controllerFileName);
-      var controller = require(path.join(conf.appDir, "controllers", controllerFileName))(conf.models, conf.services);
+    readDirectory(controllers, "", controllersPath, function(controllerInitializer, pathComplete) {
+      var controller = controllerInitializer(conf.models, conf.services);
 
       _.forEach(controller, function(handler, action) {
         var oldHandler = handler;
@@ -28,7 +50,7 @@ module.exports = function(conf) {
           controller[action] = function(req, res, next) {
             var scope = {params: req.body, session: req.session, currentUser: req.currentUser};
             var result = oldHandler(scope);
-            var renderPath = path.join(controllerName, action).toLowerCase();
+            var renderPath = path.join(pathComplete, action).toLowerCase();
 
             if(result && typeof result.then == 'function' && typeof result.catch == 'function') {
               result
@@ -60,13 +82,11 @@ module.exports = function(conf) {
             return result;
           };
         }
-
-
       });
 
-      controllers[controllerName] = controller;
+      return controller;
     });
-
+    console.log(controllers);
     resolve(controllers);
   });
 };

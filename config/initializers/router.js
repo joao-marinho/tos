@@ -10,6 +10,7 @@ module.exports = function(conf) {
   app.post("/users/create", controllers.Users.create);
 
   app.get("/sessions/new", controllers.Sessions.new);
+  app.get("/admin/sessions/new", controllers.Admin.Sessions.new);
   app.post("/sessions/create", controllers.Sessions.create);
   app.get("/sessions/delete", Authentication(controllers.Sessions.delete));
 };
