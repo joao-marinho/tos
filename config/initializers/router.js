@@ -4,6 +4,7 @@ module.exports = function(conf) {
   var Authentication = conf.middleware.Authentication;
 
   app.get("/", controllers.Public.index);
+  app.get("/internal", controllers.Public.internal);
 
   /*
   *

@@ -3,6 +3,9 @@ module.exports = function(models) {
 
   return {
     index: function(scope) {
+    },
+    internal: function(scope) {
+      scope.title =  "hue ";
     }
   };
 
