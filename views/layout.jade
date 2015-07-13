@@ -29,5 +29,24 @@ html
               a(href='/cliente/clientes/new') Cadastre-se
             li
               a(href='/cliente/sessions/new') Login
+
+    nav.navbar.navbar-inverse.navbar-fixed-bottom
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#collapse-2', aria-expanded='false')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #collapse-2.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar
+            li
+              a(href='/') Home
+            li
+              a(href='#') Contato
+            li
+              a(href='#') Sobre nós
+            li
+              a(href='#') Internal
    
     block content
