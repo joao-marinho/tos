@@ -1,16 +1,16 @@
-extends ../../layout
+extends ../layout
 
 block content
-  h1 Login como Administrador
-  form.form-horizontal(action="/admin/sessions/" method="POST")
+  h1.text-center Login como Administrador
+  form.form-horizontal(action="/sessions/create" method="POST")
     .form-group
       label.col-sm-2.control-label(for='inputEmail') Email
       .col-sm-10
-        input#inputEmail.form-control(type='email', name="admin[email]", placeholder='Email')
+        input#inputEmail.form-control(type='email', name="user[email]", placeholder='Email')
     .form-group
       label.col-sm-2.control-label(for='inputPassword') Password
       .col-sm-10
-        input#inputPassword.form-control(type='password', name="admin[password]", placeholder='Password')
+        input#inputPassword.form-control(type='password', name="user[password]", placeholder='Password')
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
@@ -20,4 +20,3 @@ block content
     .form-group
       .col-sm-offset-2.col-sm-10
         button.btn.btn-default(type='submit') Sign in
-
