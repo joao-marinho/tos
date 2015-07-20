@@ -1,12 +1,12 @@
 module.exports = function(conf) {
-  var User = conf.models.User;
+  var Cliente = conf.models.Cliente;
 
   return function(cb) {
     return function(req, res, next) {
       var session = req.session;
 
       if(session.isLogged) {
-        User.find(session.userId).then(function(user) {
+        Cliente.find(session.userId).then(function(user) {
           req.currentUser = user;
           return cb(req, res, next);
         }, function() {

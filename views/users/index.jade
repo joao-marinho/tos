@@ -4,6 +4,6 @@ block content
   h1 Hue
   a(href="/sessions/delete") Logoff
   p #{currentUser.nome}
-  each user in users
-    p #{user.id} - #{user.nome} - #{user.email} - #{user.endereco} - #{user.telefone} - #{user.cpf} - #{user.password}
+  each cliente in clientes
+    p #{cliente.id} - #{cliente.nome} - #{cliente.email} - #{cliente.endereco} - #{cliente.telefone} - #{cliente.cpf} - #{cliente.password}
     

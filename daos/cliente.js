@@ -8,5 +8,5 @@ module.exports = function(db, BasicDao) {
 		"password"
 	];
 
-  return new BasicDao({tableName: "users", fieldNames: fields, db: db});
+  return new BasicDao({tableName: "users", fieldNames: fields, db: db, discriminator: "cliente"});
 };

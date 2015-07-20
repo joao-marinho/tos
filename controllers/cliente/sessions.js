@@ -1,5 +1,5 @@
 module.exports = function(models, services) {
-  var User = models.User;
+  var Clientes = models.Clientes;
   var Authentication = services.Authentication;
 
   return {
@@ -7,28 +7,24 @@ module.exports = function(models, services) {
 
     },
     create: function(req, res, next) {
-      var email = req.body.user.email;
-      var password = req.body.user.password;
+      var email = req.body.cliente.email;
+      var password = req.body.cliente.password;
       var session = req.session;
 
-      return Authentication.login(email, password, session).then(function(user) {
-        res.redirect("/users");
+      return Authentication.login(email, password, session).then(function(cliente) {
+        res.redirect("/cliente");
       }, function() {
         // Authentication fail
-        res.redirect("/sessions/new");
+        res.redirect("/cliente/sessions/new");
       });
     },
     delete: function(req, res, next) {
       var session = req.session;
 
       return Authentication.logout(session).then(function() {
-        res.redirect("/sessions/new");
+        res.redirect("/cliente/sessions/new");
       });
     }
   };
 
 };
-
-function permittedParams(user) {
-
-}

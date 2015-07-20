@@ -6,7 +6,8 @@ exports.up = function(pgm) {
 		"email VARCHAR(80) NOT NULL UNIQUE",
 		"endereco VARCHAR(256) NOT NULL",
 		"cpf VARCHAR(20) NOT NULL UNIQUE",
-		"password CHAR(60) NOT NULL"
+		"password CHAR(60) NOT NULL",
+		"tipo CHAR(60) NOT NULL"
 	];
 	pgm.sql('CREATE TABLE users(' + fields.join(", ") + ')');
 };

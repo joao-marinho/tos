@@ -1,12 +1,12 @@
 var q = require("q");
 
 module.exports = function(models) {
-  var User = models.User;
+  var Cliente = models.Cliente;
 
   return {
     login: function(email, password, session) {
       return q.Promise(function(resolve, reject) {
-        User.where({email: email, password: password}).then(function(users) {
+        Cliente.where({email: email, password: password}).then(function(users) {
           if(users.length != 1) {
             return reject();
           }

@@ -15,40 +15,73 @@ function BasicDao(conf) {
   self.tableName = conf.tableName;
   self.fieldNames = conf.fieldNames;
   self.db = conf.db;
+  self.discriminator = conf.discriminator;
 }
 
 BasicDao.prototype.create = function(resource) {
   var self = this;
   var fields = self.fieldNames;
   var tableName = self.tableName;
+  var i;
 
   var values = fields.map(function(fieldName) {
     var value = resource[fieldName];
-    if(value === '') {
+    if (value === '') {
       return null;
     }
     return resource[fieldName];
   });
   var values$ = "";
 
-  for(var i = 1; i <= fields.length; i += 1) {
-    values$ += "$"+i;
-    if(i != fields.length) {
+  for (i = 1; i <= fields.length; i += 1) {
+    values$ += "$" + i;
+    if (i != fields.length) {
       values$ += ", ";
     }
   }
 
-  return self.db.query("INSERT INTO "+ tableName +" ("+ fields.join(", ") +") VALUES (" + values$ + ") RETURNING *;", values);
+  if (self.discriminator) {
+    values$ += ", $" + i;
+    fields.push("tipo");
+    values.push(self.discriminator);
+  }
+
+  return self.db.query("INSERT INTO " + tableName + " (" + fields.join(", ") + ") VALUES (" + values$ + ") RETURNING *;", values);
 };
+
+BasicDao.prototype.addDiscriminatorQuery = function(opts) {
+  var self = this;
+  var query = "";
+  opts = opts || {};
+  if (!self.discriminator) {
+    return " ";
+  }
+
+  if (opts.withWhere) {
+    query = " WHERE";
+  }
+  else if(opts.andAtBegin) {
+    query += "AND ";
+  }
+
+  query += " tipo = '" + self.discriminator + "' ";
+
+  if(opts.andAtEnd) {
+    query += "AND ";
+  }
+
+  console.log("ausdhasuhsdauh");
+  return query;
+}
 
 BasicDao.prototype.find = function(id) {
   var self = this;
-  return self.db.query("SELECT * FROM "+ self.tableName +" WHERE id = $1 LIMIT 1;", [id]);
+  return self.db.query("SELECT * FROM " + self.tableName + " WHERE id = $1" + self.addDiscriminatorQuery({andAtBegin: true}) + "LIMIT 1;", [id]);
 };
 
 BasicDao.prototype.all = function() {
   var self = this;
-  return self.db.query("SELECT * FROM "+self.tableName+";");
+  return self.db.query("SELECT * FROM " + self.tableName + self.addDiscriminatorQuery({withWhere: true}) + ";");
 };
 
 BasicDao.prototype.where = function(queryObj) {
@@ -64,9 +97,7 @@ BasicDao.prototype.where = function(queryObj) {
   query = query.substring(0, query.length - 5);
   query += ";";
 
-  console.log(query);
-
-  return self.db.query("SELECT * FROM "+self.tableName+" WHERE "+query, values);
+  return self.db.query("SELECT * FROM " + self.tableName + " WHERE " + self.addDiscriminatorQuery({andAtEnd: true}) + query, values);
 };
 
 module.exports = function(conf) {
