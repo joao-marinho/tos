@@ -23,7 +23,6 @@ module.exports = function(conf) {
   //Logoff
   app.get("/cliente/sessions/delete", controllers.Cliente.Sessions.delete);
 
-
   /*
   *
   * Admin
@@ -35,5 +34,37 @@ module.exports = function(conf) {
   app.post("/admin/sessions/", controllers.Admin.Sessions.create);
   // app.post("admin/users/create", controllers.Users.create);
   // app.get("/admin/users", Authentication(controllers.Admin.Users.index));
+
+  /*
+  *
+  * Atendente
+  *
+  */
+
+  app.get("/atendente/sessions/new", controllers.Atendente.Sessions.new);
+  
+  /*
+  *
+  * Caixa
+  *
+  */
+
+  app.get("/caixa/sessions/new", controllers.Caixa.Sessions.new);
+  
+  /*
+  *
+  * Gerente
+  *
+  */
+
+  app.get("/gerente/sessions/new", controllers.Gerente.Sessions.new);
+  
+  /*
+  *
+  * Tecnico
+  *
+  */
+
+  app.get("/tecnico/sessions/new", controllers.Tecnico.Sessions.new);
 
 };
