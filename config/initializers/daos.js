@@ -42,7 +42,7 @@ BasicDao.prototype.create = function(resource) {
 
   if (self.discriminator) {
     values$ += ", $" + i;
-    fields.push("tipo");
+    fields = fields.concat("tipo");
     values.push(self.discriminator);
   }
 
@@ -70,7 +70,6 @@ BasicDao.prototype.addDiscriminatorQuery = function(opts) {
     query += "AND ";
   }
 
-  console.log("ausdhasuhsdauh");
   return query;
 }
 

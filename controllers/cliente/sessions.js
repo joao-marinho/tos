@@ -1,6 +1,5 @@
 module.exports = function(models, services) {
-  var Clientes = models.Clientes;
-  var Authentication = services.Authentication;
+  var Authentication = services.Authentication_for("Cliente");
 
   return {
     new: function(scope) {

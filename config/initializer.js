@@ -28,6 +28,7 @@ module.exports = function(app) {
       return require(path.join(__dirname, "initializers", "services"))(conf);
     })
     .then(function(services) {
+      // console.log(services);
       conf.services = services;
 
       console.log("Initializing controllers");

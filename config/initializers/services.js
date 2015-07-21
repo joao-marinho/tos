@@ -15,6 +15,7 @@ module.exports = function(conf) {
     var servicesFilesNames = fs.readdirSync(path.join(conf.appDir, "services"));
 
     servicesFilesNames.forEach(function(serviceFileName) {
+      console.log(serviceFileName);
       var serviceName = getName(serviceFileName);
       services[serviceName] = require(path.join(conf.appDir, "services", serviceFileName))(conf.models);
     });
