@@ -1,7 +1,7 @@
 module.exports = function(conf) {
   var controllers = conf.controllers;
   var app = conf.app;
-  var Authentication = conf.middleware.Authentication;
+  var AuthenticationAdmin = conf.middleware.Authentication_for("Admin");
 
   app.get("/", controllers.Public.index);
 
@@ -33,6 +33,6 @@ module.exports = function(conf) {
   app.get("/admin/sessions/new", controllers.Admin.Sessions.new);
   app.post("/admin/sessions/", controllers.Admin.Sessions.create);
   // app.post("admin/users/create", controllers.Users.create);
-  // app.get("/admin/users", Authentication(controllers.Admin.Users.index));
+  app.get("/admin/users", AuthenticationAdmin(controllers.Admin.Clientes.index));
 
 };
