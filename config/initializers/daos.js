@@ -61,7 +61,7 @@ BasicDao.prototype.addDiscriminatorQuery = function(opts) {
     query = " WHERE";
   }
   else if(opts.andAtBegin) {
-    query += "AND ";
+    query += "AND";
   }
 
   query += " tipo = '" + self.discriminator + "' ";
@@ -75,7 +75,7 @@ BasicDao.prototype.addDiscriminatorQuery = function(opts) {
 
 BasicDao.prototype.find = function(id) {
   var self = this;
-  return self.db.query("SELECT * FROM " + self.tableName + " WHERE id = $1" + self.addDiscriminatorQuery({andAtBegin: true}) + "LIMIT 1;", [id]);
+  return self.db.query("SELECT * FROM " + self.tableName + " WHERE id = $1 " + self.addDiscriminatorQuery({andAtBegin: true}) + "LIMIT 1;", [id]);
 };
 
 BasicDao.prototype.all = function() {
