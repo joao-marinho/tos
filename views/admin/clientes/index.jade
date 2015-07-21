@@ -1,1 +1,20 @@
-| oi
+extends ../../layout
+
+block content
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Nome
+        th Telefone
+        th Email
+        th CPF
+    tbody
+      each cliente in clientes
+        tr
+          th(scope="row")= cliente.id
+          td= cliente.nome
+          td= cliente.telefone
+          td= cliente.email
+          td= cliente.cpf
+  
