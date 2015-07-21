@@ -1,8 +1,7 @@
 module.exports = function(conf) {
 
-  function(modelName) {
+  return function(modelName) {
     var Model = conf.models[modelName];
-
 
     return function(cb) {
       return function(req, res, next) {
