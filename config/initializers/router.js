@@ -35,4 +35,17 @@ module.exports = function(conf) {
   // app.post("admin/users/create", controllers.Users.create);
   // app.get("/admin/users", Authentication(controllers.Admin.Users.index));
 
+  /*
+  *
+  * Gerente
+  *
+  */
+
+  //Sign in
+  app.get("/gerente/sessions/new", controllers.Gerente.Sessions.new);
+  app.post("/gerente/sessions", controllers.Gerente.Sessions.create);
+
+  //Logoff
+  app.get("/gerente/sessions/delete", controllers.Gerente.Sessions.delete);
+
 };
