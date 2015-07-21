@@ -1,9 +1,0 @@
-extends ../layout
-
-block content
-  h1 Hue
-  a(href="/sessions/delete") Logoff
-  p #{currentUser.nome}
-  each cliente in clientes
-    p #{cliente.id} - #{cliente.nome} - #{cliente.email} - #{cliente.endereco} - #{cliente.telefone} - #{cliente.cpf} - #{cliente.password}
-    
