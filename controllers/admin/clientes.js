@@ -10,13 +10,28 @@ module.exports = function(models) {
     new: function(scope) {
 
     },
-    create: function(scope) {
-      var cliente = scope.params.cliente;
+    create: function(req, res, next) {
+      var cliente = req.body.cliente;
+
+      cliente.password = generatePassword();
 
       return Cliente.create(cliente).then(function(cliente) {
+        res.redirect("/admin/clientes/" + cliente.id);
+
+      }, function(err) {
+        next(err);
+      });
+    },
+    show: function(scope) {
+      return Cliente.find(scope.params.id).then(function(cliente) {
         scope.cliente = cliente;
       });
     }
+
   };
 
 };
+
+function generatePassword() {
+  return "123123";
+}

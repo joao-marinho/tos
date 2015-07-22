@@ -6,7 +6,7 @@ module.exports = function(models) {
 
     },
     create: function(scope) {
-      var cliente = scope.params.cliente;
+      var cliente = scope.body.cliente;
 
       return Cliente.create(cliente).then(function(cliente) {
         scope.cliente = cliente;

@@ -33,6 +33,12 @@ module.exports = function(conf) {
   app.get("/admin/sessions/new", controllers.Admin.Sessions.new);
   app.post("/admin/sessions/", controllers.Admin.Sessions.create);
   // app.post("admin/users/create", controllers.Users.create);
-  app.get("/admin/users", AuthenticationAdmin(controllers.Admin.Clientes.index));
+
+  app.get("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.index));
+  app.get("/admin/clientes/new", AuthenticationAdmin(controllers.Admin.Clientes.new));
+  app.post("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.create));
+  
+  app.get("/admin/clientes/:id", AuthenticationAdmin(controllers.Admin.Clientes.show));
+
 
 };
