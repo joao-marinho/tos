@@ -35,7 +35,7 @@ module.exports = function(conf) {
   // app.post("admin/users/create", controllers.Users.create);
 
   app.get("/admin/", AuthenticationAdmin(controllers.Admin.Clientes.index));
-  
+
   app.get("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.index));
   app.get("/admin/clientes/new", AuthenticationAdmin(controllers.Admin.Clientes.new));
   app.post("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.create));
@@ -45,6 +45,11 @@ module.exports = function(conf) {
   app.get("/admin/gerentes/new", AuthenticationAdmin(controllers.Admin.Gerentes.new));
   app.post("/admin/gerentes", AuthenticationAdmin(controllers.Admin.Gerentes.create));
   app.get("/admin/gerentes/:id", AuthenticationAdmin(controllers.Admin.Gerentes.show));
+
+  app.get("/admin/atendentes", AuthenticationAdmin(controllers.Admin.Atendentes.index));
+  app.get("/admin/atendentes/new", AuthenticationAdmin(controllers.Admin.Atendentes.new));
+  app.post("/admin/atendentes", AuthenticationAdmin(controllers.Admin.Atendentes.create));
+  app.get("/admin/atendentes/:id", AuthenticationAdmin(controllers.Admin.Atendentes.show));
 
   /*
   *

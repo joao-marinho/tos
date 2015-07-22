@@ -1,9 +1,9 @@
 module.exports = function(models) {
-  var Atendentes = models.Atendentes;
+  var Atendente = models.Atendente;
 
   return {
     index: function(scope) {
-      return Atendentes.all().then(function(atendentes) {
+      return Atendente.all().then(function(atendentes) {
         scope.atendentes = atendentes;
       });
     },
@@ -15,7 +15,7 @@ module.exports = function(models) {
 
       atendente.password = generatePassword();
 
-      return Atendentes.create(atendente).then(function(atendente) {
+      return Atendente.create(atendente).then(function(atendente) {
         res.redirect("/admin/atendentes/" + atendente.id);
 
       }, function(err) {
@@ -23,7 +23,7 @@ module.exports = function(models) {
       });
     },
     show: function(scope) {
-      return Atendentes.find(scope.params.id).then(function(atendente) {
+      return Atendente.find(scope.params.id).then(function(atendente) {
         scope.atendente = atendente;
       });
     }
