@@ -35,7 +35,7 @@ module.exports = function(conf) {
   // app.post("admin/users/create", controllers.Users.create);
 
   app.get("/admin/", AuthenticationAdmin(controllers.Admin.Clientes.index));
-  
+
   app.get("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.index));
   app.get("/admin/clientes/new", AuthenticationAdmin(controllers.Admin.Clientes.new));
   app.post("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.create));
@@ -58,4 +58,17 @@ module.exports = function(conf) {
 
   //Logoff
   app.get("/gerente/sessions/delete", controllers.Gerente.Sessions.delete);
+
+  /*
+  *
+  * Caixa
+  *
+  */
+
+  //Sign in
+  app.get("/caixa/sessions/new", controllers.Caixa.Sessions.new);
+  app.post("/caixa/sessions", controllers.Caixa.Sessions.create);
+
+  //Logoff
+  app.get("/caixa/sessions/delete", controllers.Caixa.Sessions.delete);
 };
