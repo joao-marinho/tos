@@ -1,0 +1,25 @@
+extends ../../layout
+
+block content
+  a(href="/admin/gerente/new") Cadastrar novo gerente
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Nome
+        th Telefone
+        th Email
+        th CPF
+        th Ações
+    tbody
+      each gerente in gerentes
+        tr
+          th(scope="row")= gerente.id
+          td= gerente.nome
+          td= gerente.telefone
+          td= gerente.email
+          td= gerente.cpf
+          td
+            a(href="/admin/gerentes/"+gerente.id) Ver
+
+  

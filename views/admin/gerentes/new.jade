@@ -1,0 +1,39 @@
+extends ../../layout
+
+block content
+  h1 Cadastrar um gerente
+
+  form.form-horizontal(action="/admin/gerentes" method="POST")
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputNome') Nome
+      .col-sm-10
+        input#inputNome.form-control(type='text', name="gerente[nome]", placeholder='Nome')
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputEmail') Email
+      .col-sm-10
+        input#inputEmail.form-control(type='email', name="gerente[email]", placeholder='Email')
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputCpf') CPF
+      .col-sm-10
+        input#inputCpf.form-control(type='text', name="gerente[cpf]", placeholder='CPF')
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputTelefone') Telefone
+      .col-sm-10
+        input#inputTelefone.form-control(type='text', name="gerente[telefone]", placeholder='Telefone')
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputEndereco') Endereço
+      .col-sm-10
+        input#inputEndereco.form-control(type='text', name="gerente[endereco]", placeholder='Endereço')
+    
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-default(type='submit') Cadastrar
+    
+    a(href="/admin/gerentes/") Voltar
+    
+      
