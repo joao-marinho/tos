@@ -11,7 +11,7 @@ module.exports = function(models, services) {
       var session = req.session;
 
       return Authentication.login(email, password, session).then(function(user) {
-        res.redirect("/admin/users");
+        res.redirect("/admin");
       }, function() {
         // Authentication fail
         res.redirect("/admin/sessions/new");

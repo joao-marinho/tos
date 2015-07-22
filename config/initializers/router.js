@@ -34,6 +34,8 @@ module.exports = function(conf) {
   app.post("/admin/sessions/", controllers.Admin.Sessions.create);
   // app.post("admin/users/create", controllers.Users.create);
 
+  app.get("/admin/", AuthenticationAdmin(controllers.Admin.Clientes.index));
+  
   app.get("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.index));
   app.get("/admin/clientes/new", AuthenticationAdmin(controllers.Admin.Clientes.new));
   app.post("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.create));
