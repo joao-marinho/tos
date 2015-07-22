@@ -12,12 +12,12 @@ module.exports = function(conf) {
             req.currentUser = user;
             return cb(req, res, next);
           }, function() {
-            return res.redirect("/sessions/new");
+            return res.redirect("/" + modelName.toLowerCase() + "/sessions/new");
           }).catch(function(err) {
             next(err);
           });
         } else {
-          return res.redirect("/sessions/new");
+          return res.redirect("/" + modelName.toLowerCase() + "/sessions/new");
         }
       };
     }
