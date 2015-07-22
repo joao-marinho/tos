@@ -46,6 +46,11 @@ module.exports = function(conf) {
   app.post("/admin/gerentes", AuthenticationAdmin(controllers.Admin.Gerentes.create));
   app.get("/admin/gerentes/:id", AuthenticationAdmin(controllers.Admin.Gerentes.show));
 
+  app.get("/admin/tecnicos", AuthenticationAdmin(controllers.Admin.Tecnicos.index));
+  app.get("/admin/tecnicos/new", AuthenticationAdmin(controllers.Admin.Tecnicos.new));
+  app.post("/admin/tecnicos", AuthenticationAdmin(controllers.Admin.Tecnicos.create));
+  app.get("/admin/tecnicos/:id", AuthenticationAdmin(controllers.Admin.Tecnicos.show));
+
   /*
   *
   * Gerente
