@@ -56,4 +56,17 @@ module.exports = function(conf) {
 
   //Logoff
   app.get("/gerente/sessions/delete", controllers.Gerente.Sessions.delete);
+
+  /*
+  *
+  * Atendente
+  *
+  */
+
+  //Sign in
+  app.get("/atendente/sessions/new", controllers.Atendente.Sessions.new);
+  app.post("/atendente/sessions", controllers.Atendente.Sessions.create);
+
+  //Logoff
+  app.get("/atendente/sessions/delete", controllers.Atendente.Sessions.delete);
 };
