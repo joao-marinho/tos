@@ -41,4 +41,17 @@ module.exports = function(conf) {
   app.get("/admin/clientes/:id", AuthenticationAdmin(controllers.Admin.Clientes.show));
 
 
+  /*
+  *
+  * Gerente
+  *
+  */
+
+  //Sign in
+  app.get("/gerente/sessions/new", controllers.Gerente.Sessions.new);
+  app.post("/gerente/sessions", controllers.Gerente.Sessions.create);
+
+  //Logoff
+  app.get("/gerente/sessions/delete", controllers.Gerente.Sessions.delete);
+
 };
