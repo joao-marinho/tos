@@ -1,6 +1,7 @@
 extends ../../layout
 
 block content
+  a(href="/admin/clientes/new") Cadastrar novo cliente
   table.table.table-striped
     thead
       tr
@@ -9,6 +10,7 @@ block content
         th Telefone
         th Email
         th CPF
+        th Ações
     tbody
       each cliente in clientes
         tr
@@ -17,4 +19,7 @@ block content
           td= cliente.telefone
           td= cliente.email
           td= cliente.cpf
+          td
+            a(href="/admin/clientes/"+cliente.id) Ver
+
   
