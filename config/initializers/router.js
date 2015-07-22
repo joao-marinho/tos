@@ -35,7 +35,7 @@ module.exports = function(conf) {
   // app.post("admin/users/create", controllers.Users.create);
 
   app.get("/admin/", AuthenticationAdmin(controllers.Admin.Clientes.index));
-  
+
   app.get("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.index));
   app.get("/admin/clientes/new", AuthenticationAdmin(controllers.Admin.Clientes.new));
   app.post("/admin/clientes", AuthenticationAdmin(controllers.Admin.Clientes.create));
@@ -71,4 +71,17 @@ module.exports = function(conf) {
 
   //Logoff
   app.get("/atendente/sessions/delete", controllers.Atendente.Sessions.delete);
+
+  /*
+  *
+  * Tecnico
+  *
+  */
+
+  //Sign in
+  app.get("/tecnico/sessions/new", controllers.Tecnico.Sessions.new);
+  app.post("/tecnico/sessions", controllers.Tecnico.Sessions.create);
+
+  //Logoff
+  app.get("/tecnico/sessions/delete", controllers.Tecnico.Sessions.delete);
 };
