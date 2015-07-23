@@ -30,10 +30,11 @@ module.exports = function(conf) {
   *
   */
 
-  // app.get("/admin/users/new", controllers.Users.new);
   app.get("/admin/sessions/new", controllers.Admin.Sessions.new);
   app.post("/admin/sessions/", controllers.Admin.Sessions.create);
-  // app.post("admin/users/create", controllers.Users.create);
+  
+  //Logoff
+  app.get("/admin/sessions/delete", controllers.Admin.Sessions.delete);
 
   app.get("/admin/", AuthenticationAdmin(controllers.Admin.Clientes.index));
 
