@@ -1,0 +1,25 @@
+extends ../../layout
+
+block content
+  a(href="/admin/atendentes/new") Cadastrar novo atendente
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Nome
+        th Telefone
+        th Email
+        th CPF
+        th Ações
+    tbody
+      each atendente in atendentes
+        tr
+          th(scope="row")= atendente.id
+          td= atendente.nome
+          td= atendente.telefone
+          td= atendente.email
+          td= atendente.cpf
+          td
+            a(href="/admin/atendentes/"+atendente.id) Ver
+
+  
