@@ -2,6 +2,7 @@ module.exports = function(conf) {
   var controllers = conf.controllers;
   var app = conf.app;
   var AuthenticationAdmin = conf.middleware.Authentication_for("Admin");
+  var AuthenticationAtendente = conf.middleware.Authentication_for("Atendente");
 
   app.get("/", controllers.Public.index);
   app.get("/internal", controllers.Public.internal);
@@ -89,6 +90,15 @@ module.exports = function(conf) {
 
   //Logoff
   app.get("/atendente/sessions/delete", controllers.Atendente.Sessions.delete);
+
+  //Home
+  app.get("/atendente/", AuthenticationAtendente(controllers.Atendente.Clientes.index));
+
+  //Manipular Cliente
+  app.get("/atendente/clientes", AuthenticationAtendente(controllers.Atendente.Clientes.index));
+  app.get("/atendente/clientes/new", AuthenticationAtendente(controllers.Atendente.Clientes.new));
+  app.post("/atendente/clientes", AuthenticationAtendente(controllers.Atendente.Clientes.create));
+  app.get("/atendente/clientes/:id", AuthenticationAtendente(controllers.Atendente.Clientes.show));
 
   /*
   *
