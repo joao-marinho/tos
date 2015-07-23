@@ -1,0 +1,25 @@
+extends ../../layout
+
+block content
+  a(href="/admin/tecnicos/new") Cadastrar novo tecnico
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Nome
+        th Telefone
+        th Email
+        th CPF
+        th Ações
+    tbody
+      each tecnico in tecnicos
+        tr
+          th(scope="row")= tecnico.id
+          td= tecnico.nome
+          td= tecnico.telefone
+          td= tecnico.email
+          td= tecnico.cpf
+          td
+            a(href="/admin/tecnicos/"+tecnico.id) Ver
+
+  
