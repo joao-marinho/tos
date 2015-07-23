@@ -51,6 +51,11 @@ module.exports = function(conf) {
   app.post("/admin/tecnicos", AuthenticationAdmin(controllers.Admin.Tecnicos.create));
   app.get("/admin/tecnicos/:id", AuthenticationAdmin(controllers.Admin.Tecnicos.show));
 
+  app.get("/admin/caixas", AuthenticationAdmin(controllers.Admin.Caixas.index));
+  app.get("/admin/caixas/new", AuthenticationAdmin(controllers.Admin.Caixas.new));
+  app.post("/admin/caixas", AuthenticationAdmin(controllers.Admin.Caixas.create));
+  app.get("/admin/caixas/:id", AuthenticationAdmin(controllers.Admin.Caixas.show));
+
   /*
   *
   * Gerente
@@ -89,4 +94,18 @@ module.exports = function(conf) {
 
   //Logoff
   app.get("/tecnico/sessions/delete", controllers.Tecnico.Sessions.delete);
+
+  /*
+  *
+  * Caixa
+  *
+  */
+
+  //Sign in
+  app.get("/caixa/sessions/new", controllers.Caixa.Sessions.new);
+  app.post("/caixa/sessions", controllers.Caixa.Sessions.create);
+
+  //Logoff
+  app.get("/caixa/sessions/delete", controllers.Caixa.Sessions.delete);
+
 };
