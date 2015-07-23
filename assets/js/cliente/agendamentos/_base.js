@@ -1,0 +1,1 @@
+App.Cliente.Agendamentos = {};
