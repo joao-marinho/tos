@@ -1,0 +1,25 @@
+extends ../../layout
+
+block content
+  a(href="/admin/caixas/new") Cadastrar novo caixa
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Nome
+        th Telefone
+        th Email
+        th CPF
+        th Ações
+    tbody
+      each caixa in caixas
+        tr
+          th(scope="row")= caixa.id
+          td= caixa.nome
+          td= caixa.telefone
+          td= caixa.email
+          td= caixa.cpf
+          td
+            a(href="/admin/caixas/"+caixa.id) Ver
+
+  
