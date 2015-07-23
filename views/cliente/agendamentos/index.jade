@@ -1,0 +1,21 @@
+extends ../../layout
+
+block content
+  a(href="/cliente/agendametos/new") Cadastrar novo Agendamento
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Horário
+        th Cliente ID
+        th Ações
+    tbody
+      each agendamento in agendamentos
+        tr
+          th(scope="row")= agendamento.id
+          td= agendamento.horario
+          td= agendamento.cliente_id
+          td
+            a(href="/cliente/agendamentos/"+agendamento.id) Ver
+
+  
