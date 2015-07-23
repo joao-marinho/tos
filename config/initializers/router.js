@@ -4,6 +4,7 @@ module.exports = function(conf) {
   var AuthenticationAdmin = conf.middleware.Authentication_for("Admin");
 
   app.get("/", controllers.Public.index);
+  app.get("/internal", controllers.Public.internal);
 
   /*
   *
@@ -13,7 +14,7 @@ module.exports = function(conf) {
 
   // Sign up
   app.get("/cliente/clientes/new", controllers.Cliente.Clientes.new);
-  app.post("/cliente/clientes/create", controllers.Cliente.Clientes.create);
+  app.post("/cliente/clientes", controllers.Cliente.Clientes.create);
 
   //Sign in
   app.get("/cliente/sessions/new", controllers.Cliente.Sessions.new);
