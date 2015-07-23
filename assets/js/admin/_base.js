@@ -1,1 +1,1 @@
-alert("_base");
+App.Admin = {};
