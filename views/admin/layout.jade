@@ -1,5 +1,9 @@
 extends ../layout_with_menu
 
+block logout_button
+    li
+        a(href='/admin/sessions/delete') Logout
+
 block menu
   .list-group
     a.list-group-item(href='/admin/clientes/') Manipular Cliente
