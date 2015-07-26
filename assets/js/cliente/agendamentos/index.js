@@ -1,7 +1,14 @@
 App.Cliente.Agendamentos.index = function(agendamentos) {
+  console.log(agendamentos);
   agendamentos = agendamentos.map(function(agendamento) {
-    return {start: agendamento.horario};
+    return {
+      start: moment(agendamento.horario),
+      end: moment(agendamento.horario).add(1, 'hour'),
+      color: '#ccc'
+    };
   });
+
+  window.zueira = agendamentos;
 
   console.log(agendamentos);
   $(function() {

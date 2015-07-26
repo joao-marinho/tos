@@ -1,0 +1,15 @@
+extends ../../layout
+
+block content
+  strong ID: 
+  =agendamento.id
+  br
+    
+  strong Horario: 
+  =moment(agendamento.horario).format("DD/MM/YYYY - HH:mm")
+  br
+  
+  a(href="/cliente/agendamentos/") Voltar
+    
+      
+      

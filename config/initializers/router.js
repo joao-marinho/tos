@@ -14,6 +14,7 @@ module.exports = function(conf) {
   app.get("/cliente/", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
   app.get("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
   app.post("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.create));
+  app.get("/cliente/agendamentos/:id", AuthenticationCliente(controllers.Cliente.Agendamentos.show));
 
 
   // Sign up
