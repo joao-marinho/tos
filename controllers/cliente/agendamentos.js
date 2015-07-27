@@ -17,6 +17,8 @@ module.exports = function(models) {
 
       agendamento.horario = moment(agendamento.horario).toDate();;
       agendamento.cliente_id = req.currentUser.id;
+      agendamento.tipo_de_veiculo_id = 1;
+      agendamento.gerente_id = 1;
 
       return Agendamento.create(agendamento).then(function(agendamento) {
 
