@@ -64,6 +64,11 @@ module.exports = function(conf) {
   app.post("/admin/atendentes", AuthenticationAdmin(controllers.Admin.Atendentes.create));
   app.get("/admin/atendentes/:id", AuthenticationAdmin(controllers.Admin.Atendentes.show));
 
+  app.get("/admin/tipos-de-veiculo", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.index));
+  // app.get("/admin/tipos-de-veiculo/new", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.new));
+  // app.post("/admin/tipos-de-veiculo", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.create));
+  // app.get("/admin/tipos-de-veiculo/:id", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.show));
+
 
   /*
   *
