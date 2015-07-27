@@ -1,5 +1,5 @@
 module.exports = function(models, services) {
-  var Authentication = services.Authentication_for("Tecnico");
+  var Authentication = services.AuthenticationFor("Tecnico");
 
   return {
     new: function(scope) {

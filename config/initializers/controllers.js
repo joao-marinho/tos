@@ -7,7 +7,7 @@ var getParameterNames = require('get-parameter-names')
 function getName(filename) {
   var extname = path.extname(filename);
   var basename = path.basename(filename, extname);
-  return _.capitalize(basename.toLowerCase());
+  return _.capitalize(_.camelCase(basename.toLowerCase()));
 }
 
 function readDirectory(controllers, relativePath, controllersPath, prepareController) {
