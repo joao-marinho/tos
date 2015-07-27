@@ -4,10 +4,15 @@ var _ = require("lodash");
 var q = require("q");
 var getParameterNames = require('get-parameter-names')
 
-function getName(filename) {
+function getBasename(filename) {
   var extname = path.extname(filename);
   var basename = path.basename(filename, extname);
-  return _.capitalize(_.camelCase(basename.toLowerCase()));
+
+  return basename;
+}
+
+function getName(filename) {
+  return _.capitalize(_.camelCase(getBasename(filename)));
 }
 
 function readDirectory(controllers, relativePath, controllersPath, prepareController) {
@@ -17,7 +22,7 @@ function readDirectory(controllers, relativePath, controllersPath, prepareContro
   _.forEach(fileNames, function(filename) {
     var pathComplete = path.join(currentPath, filename);
     var fileStat = fs.statSync(pathComplete);
-    var currentRelativePath = path.join(relativePath, getName(filename).toLowerCase());
+    var currentRelativePath = path.join(relativePath, getBasename(filename));
 
     if(fileStat.isFile()) {
       var controllerName = getName(filename);

@@ -1,0 +1,23 @@
+extends ../layout
+
+block main_content
+  a(href="/admin/tipos-de-veiculo/new") Cadastrar novo tipo de veículo
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Tipo
+        th Modelo
+        th Marca
+        th Ações
+    tbody
+      each tipoDeVeiculo in tiposDeVeiculo
+        tr
+          th(scope="row")= tipoDeVeiculo.id
+          td= tipoDeVeiculo.tipo
+          td= tipoDeVeiculo.modelo
+          td= tipoDeVeiculo.marca
+          td
+            a(href="/admin/tipos-de-veiculo/"+tipoDeVeiculo.id) Ver
+
+  

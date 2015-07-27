@@ -1,0 +1,29 @@
+extends ../layout
+
+block main_content
+  h1 Cadastrar um tipo de veículo
+
+  form.form-horizontal(action="/admin/tipos-de-veiculo" method="POST")
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputTipo') Tipo
+      .col-sm-10
+        input#inputTipo.form-control(type='text', name="tipoDeVeiculo[tipo]", placeholder='Tipo')
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputModelo') Modelo
+      .col-sm-10
+        input#inputModelo.form-control(type='text', name="tipoDeVeiculo[modelo]", placeholder='Modelo')
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputMarca') Marca
+      .col-sm-10
+        input#inputMarca.form-control(type='text', name="tipoDeVeiculo[marca]", placeholder='Marca')
+    
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-default(type='submit') Cadastrar
+    
+    a(href="/admin/tipos-de-veiculo/") Voltar
+    
+      
