@@ -1,0 +1,21 @@
+extends ../layout_with_menu
+
+block logout_button
+    li
+        a(href='/admin/sessions/delete') Logout
+
+block menu
+  .list-group
+    a.list-group-item(href='/admin/clientes/') Manipular Cliente
+    a.list-group-item(href='/admin/atendentes/') Manipular Atendente
+    a.list-group-item(href='/admin/caixas/') Manipular Caixa
+    a.list-group-item(href='/admin/tecnicos/') Manipular Técnico
+    a.list-group-item(href='/admin/gerentes/') Manipular Gerente de Equipes
+    a.list-group-item(href='#') Manipular Administrador
+    a.list-group-item(href='#') Manipular Peça
+    a.list-group-item(href='#') Manipular Tipo de Peça
+    a.list-group-item(href='#') Manipular Serviço
+    a.list-group-item(href='#') Manipular Tipo de Serviço
+    a.list-group-item(href='#') Manipular OS
+    a.list-group-item(href='#') Manipular Tipo de Veículo
+    a.list-group-item(href='#') Manipular Equipe

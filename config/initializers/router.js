@@ -2,8 +2,10 @@ module.exports = function(conf) {
   var controllers = conf.controllers;
   var app = conf.app;
   var AuthenticationAdmin = conf.middleware.Authentication_for("Admin");
+  var AuthenticationAtendente = conf.middleware.Authentication_for("Atendente");
 
   app.get("/", controllers.Public.index);
+  app.get("/internal", controllers.Public.internal);
 
   /*
   *
@@ -13,7 +15,7 @@ module.exports = function(conf) {
 
   // Sign up
   app.get("/cliente/clientes/new", controllers.Cliente.Clientes.new);
-  app.post("/cliente/clientes/create", controllers.Cliente.Clientes.create);
+  app.post("/cliente/clientes", controllers.Cliente.Clientes.create);
 
   //Sign in
   app.get("/cliente/sessions/new", controllers.Cliente.Sessions.new);
@@ -29,10 +31,11 @@ module.exports = function(conf) {
   *
   */
 
-  // app.get("/admin/users/new", controllers.Users.new);
   app.get("/admin/sessions/new", controllers.Admin.Sessions.new);
   app.post("/admin/sessions/", controllers.Admin.Sessions.create);
-  // app.post("admin/users/create", controllers.Users.create);
+  
+  //Logoff
+  app.get("/admin/sessions/delete", controllers.Admin.Sessions.delete);
 
   app.get("/admin/", AuthenticationAdmin(controllers.Admin.Clientes.index));
 
@@ -87,6 +90,15 @@ module.exports = function(conf) {
 
   //Logoff
   app.get("/atendente/sessions/delete", controllers.Atendente.Sessions.delete);
+
+  //Home
+  app.get("/atendente/", AuthenticationAtendente(controllers.Atendente.Clientes.index));
+
+  //Manipular Cliente
+  app.get("/atendente/clientes", AuthenticationAtendente(controllers.Atendente.Clientes.index));
+  app.get("/atendente/clientes/new", AuthenticationAtendente(controllers.Atendente.Clientes.new));
+  app.post("/atendente/clientes", AuthenticationAtendente(controllers.Atendente.Clientes.create));
+  app.get("/atendente/clientes/:id", AuthenticationAtendente(controllers.Atendente.Clientes.show));
 
   /*
   *
