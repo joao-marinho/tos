@@ -5,11 +5,13 @@ module.exports = function(models) {
     new: function(scope) {
 
     },
-    create: function(scope) {
-      var cliente = scope.body.cliente;
+    create: function(req, res, next) {
+      var cliente = req.body.cliente;
 
       return Cliente.create(cliente).then(function(cliente) {
-        scope.cliente = cliente;
+        res.redirect("/cliente/");
+      }, function(err) {
+        next(err);
       });
     }
   };

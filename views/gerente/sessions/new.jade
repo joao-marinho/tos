@@ -1,22 +1,23 @@
 extends ../../layout
 
 block content
-  h1 Login
-  form.form-horizontal(action="/gerente/sessions/" method="POST")
-    .form-group
-      label.col-sm-2.control-label(for='inputEmail') Email
-      .col-sm-10
-        input#inputEmail.form-control(type='email', name="gerente[email]", placeholder='Email')
-    .form-group
-      label.col-sm-2.control-label(for='inputPassword') Password
-      .col-sm-10
-        input#inputPassword.form-control(type='password', name="gerente[password]", placeholder='Password')
-    .form-group
-      .col-sm-offset-2.col-sm-10
-        .checkbox
-          label
-            input(type='checkbox')
-            |  Remember me
-    .form-group
-      .col-sm-offset-2.col-sm-10
-        button.btn.btn-default(type='submit') Sign in
+  h1.text-center Login de Gerente
+  .container
+    form.form-horizontal(action="/gerente/sessions/" method="POST")
+      .form-group
+        label.col-sm-2.control-label(for='inputEmail') Email
+        .col-sm-10
+          input#inputEmail.form-control(type='email', name="gerente[email]", placeholder='Email')
+      .form-group
+        label.col-sm-2.control-label(for='inputPassword') Password
+        .col-sm-10
+          input#inputPassword.form-control(type='password', name="gerente[password]", placeholder='Password')
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          .checkbox
+            label
+              input(type='checkbox')
+              |  Remember me
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          button.btn.btn-default(type='submit') Sign in

@@ -1,0 +1,11 @@
+extends ../layout_with_menu
+
+block logout_button
+  li
+    a(href='/atendente/sessions/delete') Logout
+
+block menu
+  .list-group
+    a.list-group-item(href='/atendente/clientes/') Listar Clientes
+    a.list-group-item(href='#') Agenda da Oficina
+    a.list-group-item(href='#') Meus Agendamentos

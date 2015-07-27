@@ -5,17 +5,9 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap-theme.min.css')
-      
+
     script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
-          
-    link(rel='stylesheet', href='/bower_components/fullcalendar/dist/fullcalendar.print.css' media="print")
-    link(rel='stylesheet', href='/bower_components/fullcalendar/dist/fullcalendar.css')
-    script(src="/bower_components/moment/moment.js")
-    script(src='/bower_components/fullcalendar/dist/fullcalendar.js')
-    script(src='/bower_components/fullcalendar/dist/lang/pt-br.js')
-
-    != js("app")
 
   body
     nav.navbar.navbar-inverse
@@ -31,10 +23,7 @@ html
               strong TOS
         #collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
-            li
-              a(href='/cliente/clientes/new') Cadastre-se
-            li
-              a(href='/cliente/sessions/new') Login
+            block logout_button
 
     nav.navbar.navbar-inverse.navbar-fixed-bottom
       .container
@@ -54,5 +43,9 @@ html
               a(href='#') Sobre nós
             li
               a(href='/internal') Internal
-   
-    block content
+  
+    .container
+      .col-sm-3
+        block menu
+      .col-sm-9
+          block main_content
