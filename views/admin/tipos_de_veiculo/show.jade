@@ -2,30 +2,22 @@ extends ../layout
 
 block main_content
   strong ID: 
-  =caixa.id
+  =tipoDeVeiculo.id
   br
     
-  strong Nome: 
-  =caixa.nome
+  strong Tipo: 
+  =tipoDeVeiculo.tipo
   br
   
-  strong Telefone: 
-  =caixa.telefone
+  strong Modelo: 
+  =tipoDeVeiculo.modelo
   br
   
-  strong Email: 
-  =caixa.email
-  br
-
-  strong cpf: 
-  =caixa.cpf
+  strong Marca: 
+  =tipoDeVeiculo.marca
   br
     
-  strong Endereço: 
-  =caixa.endereco
-  br
-    
-  a(href="/admin/caixas/") Voltar
+  a(href="/admin/tipos-de-veiculo/") Voltar
     
       
       

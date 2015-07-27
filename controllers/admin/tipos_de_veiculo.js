@@ -4,6 +4,7 @@ module.exports = function(models) {
   return {
     index: function(scope) {
       return TipoDeVeiculo.all().then(function(tiposDeVeiculo) {
+        console.log(tiposDeVeiculo);
         scope.tiposDeVeiculo = tiposDeVeiculo;
       });
     },
@@ -12,6 +13,8 @@ module.exports = function(models) {
     },
     create: function(req, res, next) {
       var tipoDeVeiculo = req.body.tipoDeVeiculo;
+
+      console.log(tipoDeVeiculo);
 
       return TipoDeVeiculo.create(tipoDeVeiculo).then(function(tipoDeVeiculo) {
         res.redirect("/admin/tipos-de-veiculo/" + tipoDeVeiculo.id);

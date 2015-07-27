@@ -14,10 +14,9 @@ block main_content
       each tipoDeVeiculo in tiposDeVeiculo
         tr
           th(scope="row")= tipoDeVeiculo.id
-          td= tipoDeVeiculo.nome
-          td= tipoDeVeiculo.telefone
-          td= tipoDeVeiculo.email
-          td= tipoDeVeiculo.cpf
+          td= tipoDeVeiculo.tipo
+          td= tipoDeVeiculo.modelo
+          td= tipoDeVeiculo.marca
           td
             a(href="/admin/tipos-de-veiculo/"+tipoDeVeiculo.id) Ver
 
