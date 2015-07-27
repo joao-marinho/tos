@@ -1,9 +1,9 @@
 module.exports = function(conf) {
   var controllers = conf.controllers;
   var app = conf.app;
-  var AuthenticationAdmin = conf.middleware.Authentication_for("Admin");
-  var AuthenticationCliente = conf.middleware.Authentication_for("Cliente");
-  var AuthenticationAtendente = conf.middleware.Authentication_for("Atendente");
+  var AuthenticationAdmin = conf.middleware.AuthenticationFor("Admin");
+  var AuthenticationCliente = conf.middleware.AuthenticationFor("Cliente");
+  var AuthenticationAtendente = conf.middleware.AuthenticationFor("Atendente");
 
   app.get("/", controllers.Public.index);
   app.get("/internal", controllers.Public.internal);
