@@ -13,6 +13,8 @@ module.exports = function(models) {
     create: function(req, res, next) {
       var agendamento = req.body.agendamento;
 
+      console.log(agendamento);
+
       agendamento.horario = moment(agendamento.horario).toDate();;
       agendamento.cliente_id = req.currentUser.id;
 
