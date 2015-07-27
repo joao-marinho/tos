@@ -1,6 +1,7 @@
 extends ../../layout
 
 block content
+  
   .row
     .col-md-6.col-md-offset-3
       #calendar
@@ -8,6 +9,7 @@ block content
   //- button.btn.btn-primary.btn-lg(type='button', data-toggle='modal', data-target='#myModal')
   //-   | Launch demo modal
   //- // Modal
+  
   #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
     form.form-horizontal(action="/cliente/agendamentos/" method="POST")
       .modal-dialog(role='document')
@@ -25,6 +27,13 @@ block content
               label.col-sm-2.control-label Horário:
               .col-sm-10
                 input.form-control.js-agendamento-horario(type='text', readonly="")
+            .form-group
+              label.col-sm-2.control-label Tipo de Veículo
+              .col-sm-10
+                select.form-control(name="agendamento[tipo_de_veiculo_id]")
+                  each tipoDeVeiculo in tiposDeVeiculo                    
+                    option(value="#{tipoDeVeiculo.id}")
+                      | #{tipoDeVeiculo.tipo} - #{tipoDeVeiculo.marca} - #{tipoDeVeiculo.modelo} 
             .form-group
               label.col-sm-2.control-label Placa do Veículo
               .col-sm-10

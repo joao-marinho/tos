@@ -2,12 +2,20 @@ var moment = require("moment");
 
 module.exports = function(models) {
   var Agendamento = models.Agendamento;
+  var TipoDeVeiculo = models.TipoDeVeiculo;
+  var Gerente = models.Gerente;
 
   return {
     index: function(scope) {
       return Agendamento.all().then(function(agendamentos) {
         console.log(agendamentos);
         scope.agendamentos = agendamentos;
+
+        return TipoDeVeiculo.all();
+      })
+      .then(function(tiposDeVeiculo) {
+        console.log(tiposDeVeiculo);
+        scope.tiposDeVeiculo = tiposDeVeiculo;
       });
     },
     create: function(req, res, next) {
@@ -17,13 +25,14 @@ module.exports = function(models) {
 
       agendamento.horario = moment(agendamento.horario).toDate();;
       agendamento.cliente_id = req.currentUser.id;
-      agendamento.tipo_de_veiculo_id = 1;
-      agendamento.gerente_id = 1;
 
-      return Agendamento.create(agendamento).then(function(agendamento) {
+      return Gerente.getAvaliable().then(function(gerente) {
+        console.log(gerente);
+        agendamento.gerente_id = gerente.id;
 
+        return  Agendamento.create(agendamento);
+      }).then(function(agendamento) {
         res.redirect("/cliente/agendamentos/"+agendamento.id);
-
       }, function(err) {
         next(err);
       });
