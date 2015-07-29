@@ -1,0 +1,16 @@
+extends ../layout
+
+block main_content
+  strong ID: 
+  =tipoDeServico.id
+  br
+    
+  strong Descrição: 
+  =tipoDeServico.descricao
+  br
+  
+  strong Preço: 
+  =tipoDeServico.preco
+  br
+  
+  a(href="/admin/tipos-de-servico/") Voltar
