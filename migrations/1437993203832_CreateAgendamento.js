@@ -8,7 +8,7 @@ exports.up = function(pgm) {
     "cliente_id INT references users(id) NOT NULL",
     "gerente_id INT references users(id) NOT NULL"
   ];
-  pgm.sql('CREATE TABLE agendamentos(' + fields.join(", ") + ')');
+  pgm.sql('CREATE TABLE IF NOT EXISTS agendamentos(' + fields.join(", ") + ')');
 };
 
 exports.down = function(pgm) {

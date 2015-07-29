@@ -9,7 +9,7 @@ exports.up = function(pgm) {
 		"password CHAR(60) NOT NULL",
 		"tipo CHAR(60) NOT NULL"
 	];
-	pgm.sql('CREATE TABLE users(' + fields.join(", ") + ')');
+	pgm.sql('CREATE TABLE IF NOT EXISTS users(' + fields.join(", ") + ')');
 };
 
 exports.down = function(pgm) {

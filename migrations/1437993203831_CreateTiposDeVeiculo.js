@@ -5,7 +5,7 @@ exports.up = function(pgm) {
     "tipo VARCHAR(40) NOT NULL",
     "marca VARCHAR(40) NOT NULL"
   ];
-  pgm.sql('CREATE TABLE tipos_de_veiculo(' + fields.join(", ") + ')');
+  pgm.sql('CREATE TABLE IF NOT EXISTS tipos_de_veiculo(' + fields.join(", ") + ')');
 };
 
 exports.down = function(pgm) {
