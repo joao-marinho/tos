@@ -69,6 +69,15 @@ module.exports = function(conf) {
   app.post("/admin/tipos-de-veiculo", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.create));
   app.get("/admin/tipos-de-veiculo/:id", AuthenticationAdmin(controllers.Admin.TiposDeVeiculo.show));
 
+  app.get("/admin/tipos-de-peca", AuthenticationAdmin(controllers.Admin.TiposDePeca.index));
+  app.get("/admin/tipos-de-peca/new", AuthenticationAdmin(controllers.Admin.TiposDePeca.new));
+  app.post("/admin/tipos-de-peca", AuthenticationAdmin(controllers.Admin.TiposDePeca.create));
+  app.get("/admin/tipos-de-peca/:id", AuthenticationAdmin(controllers.Admin.TiposDePeca.show));
+
+  app.get("/admin/tipos-de-servico", AuthenticationAdmin(controllers.Admin.TiposDeServico.index));
+  app.get("/admin/tipos-de-servico/new", AuthenticationAdmin(controllers.Admin.TiposDeServico.new));
+  app.post("/admin/tipos-de-servico", AuthenticationAdmin(controllers.Admin.TiposDeServico.create));
+  app.get("/admin/tipos-de-servico/:id", AuthenticationAdmin(controllers.Admin.TiposDeServico.show));
 
   /*
   *

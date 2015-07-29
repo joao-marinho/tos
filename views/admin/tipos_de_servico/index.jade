@@ -1,0 +1,20 @@
+extends ../layout
+
+block main_content
+  a(href="/admin/tipos-de-servico/new") Cadastrar novo tipo de serviço
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Descrição
+        th Preço
+    tbody
+      each tipoDeServico in tiposDeServico
+        tr
+          th(scope="row")= tipoDeServico.id
+          td= tipoDeServico.descricao
+          td= tipoDeServico.preco
+          td
+            a(href="/admin/tipos-de-servico/"+tipoDeServico.id) Ver
+
+  
