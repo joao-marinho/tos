@@ -1,0 +1,10 @@
+extends ../layout_with_menu
+
+block logout_button
+  li
+    a(href='/cliente/sessions/delete') Logout
+
+block menu
+  .list-group
+    a.list-group-item(href='/cliente/agendamentos') Marcar novo agendamento
+    a.list-group-item(href='#') Meus agendamentos

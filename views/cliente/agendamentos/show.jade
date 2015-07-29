@@ -1,9 +1,7 @@
-extends ../../layout
+extends ../layout
 
-block content
-  strong ID: 
-  =agendamento.id
-  br
+block main_content
+  h1 Agendamento marcado:
     
   strong Horario: 
   =moment(agendamento.horario).format("DD/MM/YYYY - HH:mm")
