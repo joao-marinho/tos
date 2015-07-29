@@ -5,7 +5,7 @@ exports.up = function(pgm) {
     "ordem_de_servico_id INT references ordens_de_servico(id) NOT NULL",
     "tipo_de_servico_id INT references tipos_de_servico(id) NOT NULL"
   ];
-  pgm.sql('CREATE TABLE servicos(' + fields.join(", ") + ')');
+  pgm.sql('CREATE TABLE IF NOT EXISTS servicos(' + fields.join(", ") + ')');
 };
 
 exports.down = function(pgm) {

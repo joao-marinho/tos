@@ -4,7 +4,7 @@ exports.up = function(pgm) {
     "descricao VARCHAR(256)",
     "preco INT NOT NULL"
   ];
-  pgm.sql('CREATE TABLE tipos_de_servico(' + fields.join(", ") + ')');
+  pgm.sql('CREATE TABLE IF NOT EXISTS tipos_de_servico(' + fields.join(", ") + ')');
 };
 
 exports.down = function(pgm) {
