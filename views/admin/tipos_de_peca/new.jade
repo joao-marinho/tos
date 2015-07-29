@@ -1,0 +1,23 @@
+extends ../layout
+
+block main_content
+  h1 Cadastrar um tipo de peça
+
+  form.form-horizontal(action="/admin/tipos-de-peca" method="POST")
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputDescricao') Descrição
+      .col-sm-10
+        input#inputTipo.form-control(type='text', name="tipoDePeca[descricao]", placeholder='Descrição')
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputPreco') Preço
+      .col-sm-10
+        input#inputModelo.form-control(type='text', name="tipoDePeca[preco]", placeholder='Preço')
+    
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-default(type='submit') Cadastrar
+    
+    a(href="/admin/tipos-de-peca/") Voltar
+    
