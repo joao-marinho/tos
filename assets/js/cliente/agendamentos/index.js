@@ -8,9 +8,6 @@ App.Cliente.Agendamentos.index = function(agendamentos) {
     };
   });
 
-  window.zueira = agendamentos;
-
-  console.log(agendamentos);
   $(function() {
     var calendar = $("#calendar").fullCalendar({
       lang: "pt-br",
