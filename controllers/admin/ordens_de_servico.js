@@ -1,5 +1,6 @@
 module.exports = function(models) {
   var OrdemDeServico = models.OrdemDeServico;
+  var Cliente = models.Cliente;
 
   return {
     index: function(scope) {
@@ -9,10 +10,15 @@ module.exports = function(models) {
       });
     },
     new: function(scope) {
-
+      return Cliente.all().then(function(clientes) {
+        scope.clientes = clientes;
+      });
     },
     create: function(req, res, next) {
       var ordemDeServico = req.body.ordemDeServico;
+
+      ordemDeServico.data_de_emissao = new Date();
+      ordemDeServico.status = OrdemDeServico.STATUS_INCOMPLETE;
 
       console.log(ordemDeServico);
 

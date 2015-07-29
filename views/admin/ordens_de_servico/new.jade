@@ -6,11 +6,6 @@ block main_content
   form.form-horizontal(action="/admin/ordens-de-servico" method="POST")
     
     .form-group
-      label.col-sm-2.control-label(for='inputDataDeEmissao') Data de Emissão
-      .col-sm-10
-        input#inputDataDeEmissao.form-control(type='text', name="ordemDeServico[data_de_emissao]", placeholder='Data de Emissão')
-    
-    .form-group
       label.col-sm-2.control-label(for='inputDataDeConclusao') Data de Conclusão
       .col-sm-10
         input#inputDataDeConclusao.form-control(type='text', name="ordemDeServico[data_de_conclusao]", placeholder='Data de Conclusão')
@@ -21,14 +16,11 @@ block main_content
         input#inputValor.form-control(type='text', name="ordemDeServico[valor]", placeholder='Valor')
 
     .form-group
-      label.col-sm-2.control-label(for='inputStatus') Status
-      .col-sm-10
-        input#inputStatus.form-control(type='text', name="ordemDeServico[status]", placeholder='Status')
-    
-    .form-group
       label.col-sm-2.control-label(for='inputCliente') Cliente
       .col-sm-10
-        input#inputCliente.form-control(type='text', name="ordemDeServico[cliente_id]", placeholder='Cliente')
+        select#inputCliente.form-control(name="ordemDeServico[cliente_id]", placeholder='Escolha um cliente')
+          each cliente in clientes                    
+            option(value="#{cliente.id}")= cliente.nome
 
     .form-group
       .col-sm-offset-2.col-sm-10
