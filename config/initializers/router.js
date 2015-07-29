@@ -2,6 +2,7 @@ module.exports = function(conf) {
   var controllers = conf.controllers;
   var app = conf.app;
   var AuthenticationAdmin = conf.middleware.AuthenticationFor("Admin");
+  var AuthenticationCliente = conf.middleware.AuthenticationFor("Cliente");
   var AuthenticationAtendente = conf.middleware.AuthenticationFor("Atendente");
 
   app.get("/", controllers.Public.index);
@@ -12,6 +13,11 @@ module.exports = function(conf) {
   * Cliente
   *
   */
+  app.get("/cliente/", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
+  app.get("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
+  app.post("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.create));
+  app.get("/cliente/agendamentos/:id", AuthenticationCliente(controllers.Cliente.Agendamentos.show));
+
 
   // Sign up
   app.get("/cliente/clientes/new", controllers.Cliente.Clientes.new);

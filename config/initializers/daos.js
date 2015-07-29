@@ -78,6 +78,12 @@ BasicDao.prototype.find = function(id) {
   return self.db.query("SELECT * FROM " + self.tableName + " WHERE id = $1 " + self.addDiscriminatorQuery({andAtBegin: true}) + "LIMIT 1;", [id]);
 };
 
+BasicDao.prototype.findOneRandom = function() {
+  var self = this;
+
+  return self.db.query("SELECT * FROM " + self.tableName + self.addDiscriminatorQuery({withWhere: true}) + " ORDER BY RANDOM() LIMIT 1;");
+};
+
 BasicDao.prototype.all = function() {
   var self = this;
   return self.db.query("SELECT * FROM " + self.tableName + self.addDiscriminatorQuery({withWhere: true}) + ";");

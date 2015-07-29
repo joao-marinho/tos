@@ -20,6 +20,8 @@ function BasicModel(dao) {
     });
   }
 
+  Model._dao = dao;
+
   Model.create = function(model) {
     return dao.create(model).
       then(function(result) {
@@ -44,6 +46,15 @@ function BasicModel(dao) {
         return result.rows.map(function(modelRaw) {
           return new Model(modelRaw);
         });
+      });
+  }
+
+  Model.getOneRandom = function() {
+    return dao.findOneRandom().
+      then(function(result) {
+        var modelRaw = result.rows[0];
+
+        return new Model(modelRaw);
       });
   }
 
