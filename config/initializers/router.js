@@ -79,6 +79,11 @@ module.exports = function(conf) {
   app.post("/admin/tipos-de-servico", AuthenticationAdmin(controllers.Admin.TiposDeServico.create));
   app.get("/admin/tipos-de-servico/:id", AuthenticationAdmin(controllers.Admin.TiposDeServico.show));
 
+  app.get("/admin/ordens-de-servico", AuthenticationAdmin(controllers.Admin.OrdensDeServico.index));
+  app.get("/admin/ordens-de-servico/new", AuthenticationAdmin(controllers.Admin.OrdensDeServico.new));
+  app.post("/admin/ordens-de-servico", AuthenticationAdmin(controllers.Admin.OrdensDeServico.create));
+  app.get("/admin/ordens-de-servico/:id", AuthenticationAdmin(controllers.Admin.OrdensDeServico.show));
+  
   /*
   *
   * Gerente
