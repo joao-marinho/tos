@@ -19,4 +19,7 @@ block main_content
           td= agendamento.gerente_id
           td
             a(href="/cliente/agendamentos/"+agendamento.id) Ver 
-            a(href="/cliente/agendamentos/cancelar/"+agendamento.id) Cancelar 
+            a#cancelar-agendamento-js(href="/cliente/agendamentos/cancelar/"+agendamento.id) Cancelar 
+
+  script.
+    App.Cliente.Agendamentos.cancelarAgendamento();

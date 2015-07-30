@@ -54,6 +54,18 @@ module.exports = function(models) {
         scope.agendamentos = agendamentos;
       });
 
+    },
+    cancelar: function(req, res, next) {
+      var agendamentoId = req.params.id;
+      console.log(agendamentoId);
+      return Agendamento.find(agendamentoId).then(function(agendamento) {
+        console.log(agendamento);
+        agendamento.delete().then(function(result) {
+          console.log("Alguma coisa "+result)
+          res.redirect("/cliente/agendamentos");
+        });
+      });
+
     }
   };
 
