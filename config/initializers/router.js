@@ -127,6 +127,11 @@ module.exports = function(conf) {
   app.post("/atendente/clientes", AuthenticationAtendente(controllers.Atendente.Clientes.create));
   app.get("/atendente/clientes/:id", AuthenticationAtendente(controllers.Atendente.Clientes.show));
 
+  //Agendamentos
+  app.get("/atendente/agendamentos/index", AuthenticationAtendente(controllers.Atendente.Agendamentos.index));
+  app.post("/atendente/agendamentos", AuthenticationAtendente(controllers.Atendente.Agendamentos.create));
+  app.get("/atendente/agendamentos/:id", AuthenticationAtendente(controllers.Atendente.Agendamentos.show));
+
   /*
   *
   * Tecnico
