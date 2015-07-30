@@ -101,6 +101,7 @@ module.exports = function(conf) {
 
   app.get("/gerente/", AuthenticationGerente(controllers.Gerente.Agenda.index));
   app.get("/gerente/agenda", AuthenticationGerente(controllers.Gerente.Agenda.index));
+  app.get("/gerente/agenda/:id", AuthenticationGerente(controllers.Gerente.Agenda.show));
 
   /*
   *

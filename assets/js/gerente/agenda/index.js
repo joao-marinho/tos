@@ -4,7 +4,8 @@ App.Gerente.Agenda.index = function(agendamentos) {
     return {
       start: moment(agendamento.horario),
       end: moment(agendamento.horario).add(1, 'hour'),
-      color: '#ccc'
+      color: '#ccc',
+      agendamento_id: agendamento.id
     };
   });
 
@@ -44,6 +45,13 @@ App.Gerente.Agenda.index = function(agendamentos) {
         //- console.log(view);
         //- $(this).css('background-color', 'red');
         //- $('#myModal').modal({});
+      },
+       eventClick: function(event) {
+        console.log("Event clicked");
+        console.log(event.agendamento_id);
+        if (event.agendamento_id) {
+            window.location.href = "/gerente/agenda/" + event.agendamento_id;
+        }
       }
 
     });

@@ -9,6 +9,15 @@ module.exports = function(models) {
         console.log(agendamentos);
         scope.agendamentos = agendamentos;
       });
+    },
+
+    show: function(scope) {
+      var agendamentoId = scope.params.id;
+
+      return Agendamento.find(agendamentoId).then(function(agendamento) {
+        scope.agendamento = agendamento;
+      });
+
     }
   };
 
