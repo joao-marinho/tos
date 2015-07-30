@@ -18,6 +18,13 @@ block main_content
             h4#myModalLabel.modal-title Agendar Consulta
           .modal-body
             .form-group
+              label.col-sm-2.control-label Cliente
+              .col-sm-10
+                select.form-control(name="agendamento[cliente_id]")
+                  each cliente in clientes                   
+                    option(value="#{cliente.id}")
+                      | #{cliente.nome} - #{cliente.cpf}
+            .form-group
               label.col-sm-2.control-label Dia:
               .col-sm-10
                 input.form-control.js-agendamento-dia(type='text', readonly="")
