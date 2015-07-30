@@ -14,10 +14,12 @@ module.exports = function(conf) {
   * Cliente
   *
   */
-  app.get("/cliente/", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
-  app.get("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
+  app.get("/cliente/", AuthenticationCliente(controllers.Cliente.Agendamentos.lista));
+  app.get("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.lista));
+  app.get("/cliente/agendamentos/index", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
   app.post("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.create));
   app.get("/cliente/agendamentos/:id", AuthenticationCliente(controllers.Cliente.Agendamentos.show));
+  app.get("/cliente/agendamentos/cancelar/:id", AuthenticationCliente(controllers.Cliente.Agendamentos.cancelar));
 
 
   // Sign up

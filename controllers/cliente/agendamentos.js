@@ -1,4 +1,5 @@
 var moment = require("moment");
+var q = require("q");
 
 module.exports = function(models) {
   var Agendamento = models.Agendamento;
@@ -43,6 +44,47 @@ module.exports = function(models) {
       return Agendamento.find(agendamentoId).then(function(agendamento) {
         console.log("agendamento", agendamento);
         scope.agendamento = agendamento;
+        return Gerente.find(agendamento.gerente_id);
+      }).then(function(gerente){
+        scope.gerente = gerente;
+        console.log(scope.gerente);
+        return TipoDeVeiculo.find(scope.agendamento.tipo_de_veiculo_id);
+      }).then(function(tipo_de_veiculo){
+        scope.tipo_de_veiculo = tipo_de_veiculo;
+      });
+
+    },
+    lista: function(scope) {
+      var currentUser = scope.currentUser;
+      console.log(currentUser);
+      return Agendamento.where({cliente_id: currentUser.id}).then(function(agendamentos) {
+        console.log(agendamentos);
+
+        var promises = agendamentos.map(function(agendamento) {
+          return Gerente.find(agendamento.gerente_id).then(function(gerente) {
+            agendamento.gerente = gerente;
+            return agendamento;
+          }).then(function(agendamento){
+            return TipoDeVeiculo.find(agendamento.tipo_de_veiculo_id).then(function(tipo_de_veiculo){
+              agendamento.tipo_de_veiculo = tipo_de_veiculo;
+            });
+          });
+        });
+
+        scope.agendamentos = agendamentos;
+        return q.all(promises);
+      });
+
+    },
+    cancelar: function(req, res, next) {
+      var agendamentoId = req.params.id;
+      console.log(agendamentoId);
+      return Agendamento.find(agendamentoId).then(function(agendamento) {
+        console.log(agendamento);
+        agendamento.delete().then(function(result) {
+          console.log("Alguma coisa "+result)
+          res.redirect("/cliente/agendamentos");
+        });
       });
 
     }

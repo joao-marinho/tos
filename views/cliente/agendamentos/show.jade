@@ -12,11 +12,11 @@ block main_content
   br
   
   strong Tipo de veiculo: 
-  =agendamento.tipo_de_veiculo_id
+  span #{tipo_de_veiculo.modelo} - #{tipo_de_veiculo.marca} - #{tipo_de_veiculo.tipo}
   br
     
   strong Gerente: 
-  =agendamento.gerente_id
+  =gerente.nome
   br
   
   a(href="/cliente/agendamentos/") Voltar
