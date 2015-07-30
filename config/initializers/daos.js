@@ -89,17 +89,30 @@ BasicDao.prototype.all = function() {
   return self.db.query("SELECT * FROM " + self.tableName + self.addDiscriminatorQuery({withWhere: true}) + ";");
 };
 
-BasicDao.prototype.where = function(queryObj) {
+BasicDao.prototype.where = function(queryArray) {
   var self = this;
   var query = "";
   var values = [];
-  _.forEach(queryObj, function(value, field) {
-    values.push(value);
-    query += field + " = $" + values.length + " AND ";
+
+  if(!_.isArray(queryArray)) {
+    queryArray = [queryArray];
+  }
+
+  query += "(";
+  _.forEach(queryArray, function(queryObj) {
+    query += "(";
+    _.forEach(queryObj, function(value, field) {
+      values.push(value);
+      query += field + " = $" + values.length + " AND ";
+    });
+    // Removing the last " AND "
+    query = query.substring(0, query.length - 5);
+    query += ") OR ";
   });
 
-  // Removing the last " AND "
-  query = query.substring(0, query.length - 5);
+  // Removing the last " OR "
+  query = query.substring(0, query.length - 4);
+  query += ")";
   query += ";";
 
   return self.db.query("SELECT * FROM " + self.tableName + " WHERE " + self.addDiscriminatorQuery({andAtEnd: true}) + query, values);
