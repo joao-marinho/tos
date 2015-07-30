@@ -4,7 +4,8 @@ module.exports = function(db, BasicDao) {
 		"data_de_conclusao",
     "valor",
     "status",
-    "cliente_id"
+    "cliente_id",
+    "equipe_id"
 	];
 
   return new BasicDao({tableName: "ordens_de_servico", fieldNames: fields, db: db});

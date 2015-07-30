@@ -2,6 +2,7 @@ module.exports = function(models) {
   var OrdemDeServico = models.OrdemDeServico;
   var Cliente = models.Cliente;
   var Tecnico = models.Tecnico;
+  var Equipe = models.Equipe;
 
   return {
     index: function(scope) {
@@ -20,13 +21,21 @@ module.exports = function(models) {
     },
     create: function(req, res, next) {
       var ordemDeServico = req.body.ordemDeServico;
+      var equipe = req.body.equipe;
+      var currentUser = req.currentUser;
 
       ordemDeServico.data_de_emissao = new Date();
       ordemDeServico.status = OrdemDeServico.STATUS_INCOMPLETE;
 
       console.log(ordemDeServico);
 
-      return OrdemDeServico.create(ordemDeServico).then(function(ordemDeServico) {
+      return Equipe.findByTecnicosOrCreate(equipe.primeiro_tecnico_id, equipe.segundo_tecnico_id, currentUser.id)
+      .then(function(equipe) {
+        ordemDeServico.equipe_id = equipe.id;
+
+        return OrdemDeServico.create(ordemDeServico);
+      })
+      .then(function(ordemDeServico) {
         res.redirect("/admin/ordens-de-servico/" + ordemDeServico.id);
 
       }, function(err) {

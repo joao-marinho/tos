@@ -11,6 +11,8 @@ block main_content
         th Valor
         th Status
         th Cliente
+        th Equipe
+        th Ações
     tbody
       each ordemDeServico in ordensDeServico
         tr
@@ -20,6 +22,7 @@ block main_content
           td= ordemDeServico.valor
           td= ordemDeServico.status
           td= ordemDeServico.cliente_id
+          td= ordemDeServico.equipe_id
           td
             a(href="/admin/ordens-de-servico/"+ordemDeServico.id) Ver
 
