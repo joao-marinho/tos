@@ -90,7 +90,9 @@ module.exports = function(conf) {
   app.get("/admin/ordens-de-servico/new", AuthenticationAdmin(controllers.Admin.OrdensDeServico.new));
   app.post("/admin/ordens-de-servico", AuthenticationAdmin(controllers.Admin.OrdensDeServico.create));
   app.get("/admin/ordens-de-servico/:id", AuthenticationAdmin(controllers.Admin.OrdensDeServico.show));
-  
+  app.get("/admin/ordens-de-servico/:id/complete", AuthenticationAdmin(controllers.Admin.OrdensDeServico.edit_execution));
+  app.post("/admin/ordens-de-servico/:id/complete", AuthenticationAdmin(controllers.Admin.OrdensDeServico.update_execution));
+
   /*
   *
   * Gerente

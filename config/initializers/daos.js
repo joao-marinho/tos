@@ -49,6 +49,40 @@ BasicDao.prototype.create = function(resource) {
   return self.db.query("INSERT INTO " + tableName + " (" + fields.join(", ") + ") VALUES (" + values$ + ") RETURNING *;", values);
 };
 
+BasicDao.prototype.save = function(resource) {
+  var self = this;
+  var fields = self.fieldNames;
+  var tableName = self.tableName;
+  var i;
+
+  var values = fields.map(function(fieldName) {
+    var value = resource[fieldName];
+    if (value === '') {
+      return null;
+    }
+    return resource[fieldName];
+  });
+  var values$ = "";
+
+  for (i = 1; i <= fields.length; i += 1) {
+    values$ += "$" + i;
+    if (i != fields.length) {
+      values$ += ", ";
+    }
+  }
+
+  if (self.discriminator) {
+    values$ += ", $" + i;
+    i += 1;
+    fields = fields.concat("tipo");
+    values.push(self.discriminator);
+  }
+
+  values.push(resource.id);
+
+  return self.db.query("UPDATE " + tableName + " SET (" + fields.join(", ") + ") = (" + values$ + ") WHERE id = $" + i + " RETURNING *;", values);
+};
+
 BasicDao.prototype.addDiscriminatorQuery = function(opts) {
   var self = this;
   var query = "";

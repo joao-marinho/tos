@@ -25,5 +25,9 @@ block main_content
           td= ordemDeServico.equipe_id
           td
             a(href="/admin/ordens-de-servico/"+ordemDeServico.id) Ver
+            if ordemDeServico.status == 'Incompleto'
+              | &nbsp;
+              a(href="/admin/ordens-de-servico/"+ordemDeServico.id+"/complete") Completar
+              
 
   

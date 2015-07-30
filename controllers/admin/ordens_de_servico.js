@@ -1,3 +1,5 @@
+var moment = require("moment");
+
 module.exports = function(models) {
   var OrdemDeServico = models.OrdemDeServico;
   var Cliente = models.Cliente;
@@ -19,6 +21,28 @@ module.exports = function(models) {
         scope.tecnicos = tecnicos;
       });
     },
+    edit_execution: function(scope) {
+      var ordemDeServicoId = scope.params.id;
+      return OrdemDeServico.find(ordemDeServicoId).then(function(ordemDeServico) {
+        scope.ordemDeServico = ordemDeServico;
+      });
+    },
+    update_execution: function(req, res, next) {
+      var ordemDeServicoId = req.params.id;
+      var ordemDeServicoEdited = req.body.ordemDeServico;
+
+      return OrdemDeServico.find(ordemDeServicoId)
+      .then(function(ordemDeServico) {
+        ordemDeServico.inicio_da_execucao = moment(ordemDeServicoEdited.inicio_da_execucao, "DD/MM/YYYY HH:mm");
+        ordemDeServico.fim_da_execucao = moment(ordemDeServicoEdited.fim_da_execucao, "DD/MM/YYYY HH:mm");
+        ordemDeServico.status = OrdemDeServico.STATUS_CREATED;
+
+        return ordemDeServico.save();
+      })
+      .then(function(ordemDeServico) {
+        res.redirect("/admin/ordens-de-servico/" + ordemDeServico.id);
+      });
+    },
     create: function(req, res, next) {
       var ordemDeServico = req.body.ordemDeServico;
       var equipe = req.body.equipe;
@@ -36,7 +60,7 @@ module.exports = function(models) {
         return OrdemDeServico.create(ordemDeServico);
       })
       .then(function(ordemDeServico) {
-        res.redirect("/admin/ordens-de-servico/" + ordemDeServico.id);
+        res.redirect("/admin/ordens-de-servico/" + ordemDeServico.id + "/complete");
 
       }, function(err) {
         next(err);

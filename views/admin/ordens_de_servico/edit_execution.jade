@@ -1,0 +1,24 @@
+extends ../layout
+
+block main_content
+  h1 Editar execução da Ordem de Serviço
+
+  form.form-horizontal(action="/admin/ordens-de-servico/#{ordemDeServico.id}/complete" method="POST")
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputDataDeConclusao') Inicio da execução
+      .col-sm-10
+        input#inputDataDeConclusao.form-control.js-datetimepicker(type='text', name="ordemDeServico[inicio_da_execucao]", placeholder='Inicio da execução')
+
+    .form-group
+      label.col-sm-2.control-label(for='inputDataDeConclusao') Fim da execução
+      .col-sm-10
+        input#inputDataDeConclusao.form-control.js-datetimepicker(type='text', name="ordemDeServico[fim_da_execucao]", placeholder='Fim da execução')
+      
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-default(type='submit') Definir
+    
+    a(href="/admin/ordens-de-servico/") Voltar
+    

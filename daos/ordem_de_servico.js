@@ -5,6 +5,8 @@ module.exports = function(db, BasicDao) {
     "valor",
     "status",
     "cliente_id",
+    "inicio_da_execucao",
+    "fim_da_execucao",
     "equipe_id"
 	];
 

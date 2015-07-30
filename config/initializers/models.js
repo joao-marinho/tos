@@ -67,6 +67,16 @@ function BasicModel(dao) {
       });
   }
 
+  Model.prototype.save = function() {
+    var self = this;
+
+    return dao.save(self).then(function(result) {
+      var modelRaw = result.rows[0];
+
+      return new Model(modelRaw);
+    });
+  };
+
   return Model;
 }
 
