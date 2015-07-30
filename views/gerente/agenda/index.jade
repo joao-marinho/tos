@@ -1,0 +1,10 @@
+extends ../layout
+
+block main_content
+  
+  #calendar
+
+  script.
+    App.Gerente.Agenda.index(!{JSON.stringify(agendamentos)});
+    
+  
