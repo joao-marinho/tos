@@ -45,6 +45,15 @@ module.exports = function(models) {
         scope.agendamento = agendamento;
       });
 
+    },
+    lista: function(scope) {
+      var currentUser = scope.currentUser;
+      console.log(currentUser);
+      return Agendamento.where({cliente_id: currentUser.id}).then(function(agendamentos) {
+        console.log(agendamentos);
+        scope.agendamentos = agendamentos;
+      });
+
     }
   };
 

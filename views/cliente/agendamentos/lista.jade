@@ -1,0 +1,22 @@
+extends ../layout
+
+block main_content
+  a(href="/cliente/agendamentos/index") Realizar novo agendamento
+  table.table.table-striped
+    thead
+      tr
+        th Horário
+        th Placa
+        th Tipo de Veículo
+        th Gerente
+        th Ações
+    tbody
+      each agendamento in agendamentos
+        tr
+          th(scope="row")= agendamento.horario
+          td= agendamento.placa
+          td= agendamento.tipo_de_veiculo_id
+          td= agendamento.gerente_id
+          td
+            a(href="/cliente/agendamentos/"+agendamento.id) Ver 
+            a(href="/cliente/agendamentos/cancelar/"+agendamento.id) Cancelar 
