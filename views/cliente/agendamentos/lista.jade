@@ -13,10 +13,10 @@ block main_content
     tbody
       each agendamento in agendamentos
         tr
-          th(scope="row")= agendamento.horario
+          th(scope="row")= moment(agendamento.horario).format("DD/MM/YYYY - HH:mm")
           td= agendamento.placa
-          td= agendamento.tipo_de_veiculo_id
-          td= agendamento.gerente_id
+          td #{agendamento.tipo_de_veiculo.modelo} - #{agendamento.tipo_de_veiculo.marca} - #{agendamento.tipo_de_veiculo.tipo}
+          td= agendamento.gerente.nome
           td
             a(href="/cliente/agendamentos/"+agendamento.id) Ver 
             a#cancelar-agendamento-js(href="/cliente/agendamentos/cancelar/"+agendamento.id) Cancelar 
