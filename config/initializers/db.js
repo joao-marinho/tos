@@ -7,7 +7,7 @@ module.exports = function(conf) {
       query: function(queryString, queryValues) {
         var deferred = q.defer();
         var conString = process.env.DATABASE_URL;
-        console.log(queryString);
+        console.log(queryString, queryValues);
 
         pg.connect(conString, function(err, client, done) {
           if(err) {

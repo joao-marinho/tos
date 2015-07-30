@@ -4,6 +4,7 @@ module.exports = function(conf) {
   var AuthenticationAdmin = conf.middleware.AuthenticationFor("Admin");
   var AuthenticationCliente = conf.middleware.AuthenticationFor("Cliente");
   var AuthenticationAtendente = conf.middleware.AuthenticationFor("Atendente");
+  var AuthenticationGerente = conf.middleware.AuthenticationFor("Gerente");
 
   app.get("/", controllers.Public.index);
   app.get("/internal", controllers.Public.internal);
@@ -97,6 +98,9 @@ module.exports = function(conf) {
 
   //Logoff
   app.get("/gerente/sessions/delete", controllers.Gerente.Sessions.delete);
+
+  app.get("/gerente/", AuthenticationGerente(controllers.Gerente.Agenda.index));
+  app.get("/gerente/agenda", AuthenticationGerente(controllers.Gerente.Agenda.index));
 
   /*
   *
