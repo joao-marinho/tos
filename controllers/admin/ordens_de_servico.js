@@ -1,6 +1,7 @@
 module.exports = function(models) {
   var OrdemDeServico = models.OrdemDeServico;
   var Cliente = models.Cliente;
+  var Tecnico = models.Tecnico;
 
   return {
     index: function(scope) {
@@ -12,6 +13,9 @@ module.exports = function(models) {
     new: function(scope) {
       return Cliente.all().then(function(clientes) {
         scope.clientes = clientes;
+        return Tecnico.all();
+      }).then(function(tecnicos) {
+        scope.tecnicos = tecnicos;
       });
     },
     create: function(req, res, next) {

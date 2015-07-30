@@ -21,6 +21,20 @@ block main_content
         select#inputCliente.form-control(name="ordemDeServico[cliente_id]", placeholder='Escolha um cliente')
           each cliente in clientes                    
             option(value="#{cliente.id}")= cliente.nome
+            
+    .form-group
+      label.col-sm-2.control-label Equipe
+      .col-sm-5
+        select.form-control(name="equipe[primeiro_tecnico_id]")
+          option(value="", disabled="", selected="") Escolha um técnico
+          each tecnico in tecnicos                    
+            option(value="#{tecnico.id}")= tecnico.nome
+      .col-sm-5
+        select.form-control(name="equipe[segundo_tecnico_id]")
+          option(value="", disabled="", selected="") Escolha um técnico
+          each tecnico in tecnicos                    
+            option(value="#{tecnico.id}")= tecnico.nome
+      
 
     .form-group
       .col-sm-offset-2.col-sm-10
