@@ -1,0 +1,29 @@
+extends ../layout
+
+block main_content
+  h1 Agendamento marcado:
+    
+  strong Horario: 
+  =moment(agendamento.horario).format("DD/MM/YYYY - HH:mm")
+  br
+    
+  strong Placa: 
+  =agendamento.placa
+  br
+  
+  strong Tipo de veiculo: 
+  span #{tipo_de_veiculo.modelo} - #{tipo_de_veiculo.marca} - #{tipo_de_veiculo.tipo}
+  br
+    
+  strong Gerente: 
+  =gerente.nome
+  br
+
+  strong Cliente: 
+  span #{cliente.nome} - #{cliente.cpf}
+  br
+  
+  a(href="/atendente/agendamentos/index") Voltar
+    
+      
+      
