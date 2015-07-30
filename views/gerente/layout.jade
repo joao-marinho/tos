@@ -1,7 +1,12 @@
 extends ../layout_with_menu
 
+block logout_button
+    li
+        a(href='/gerente/sessions/delete') Logout
+
 block menu
   .list-group
-    a.list-group-item.active(href='#') Minha Agenda
+    a.list-group-item(href='/gerente/agenda') Minha Agenda
     a.list-group-item(href='#') Criar OS
     a.list-group-item(href='#') Consultar OS's
+
