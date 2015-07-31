@@ -59,7 +59,17 @@ module.exports = function(models) {
       }).then(function(cliente){
         scope.cliente = cliente;
       });
-
+    },
+    cancelar: function(req, res, next) {
+      var agendamentoId = req.params.id;
+      console.log(req.params);
+      return Agendamento.find(agendamentoId).then(function(agendamento) {
+        console.log(agendamento);
+        agendamento.delete().then(function(result) {
+          console.log("Alguma coisa "+result)
+          res.redirect("/atendente/clientes/"+agendamento.cliente_id+"/agendamentos");
+        });
+      });
     }
   };
 

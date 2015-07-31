@@ -132,7 +132,7 @@ module.exports = function(conf) {
   app.get("/atendente/agendamentos/index", AuthenticationAtendente(controllers.Atendente.Agendamentos.index));
   app.post("/atendente/agendamentos", AuthenticationAtendente(controllers.Atendente.Agendamentos.create));
   app.get("/atendente/agendamentos/:id", AuthenticationAtendente(controllers.Atendente.Agendamentos.show));
-
+  app.get("/atendente/agendamentos/cancelar/:id", AuthenticationAtendente(controllers.Atendente.Agendamentos.cancelar));
 
   /*
   *
