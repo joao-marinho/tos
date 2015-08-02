@@ -1,0 +1,25 @@
+extends ../layout
+
+block main_content
+  a(href="/cliente/agendamentos/index") Realizar novo agendamento
+  table.table.table-striped
+    thead
+      tr
+        th Horário
+        th Placa
+        th Tipo de Veículo
+        th Gerente
+        th Ações
+    tbody
+      each agendamento in agendamentos
+        tr
+          th(scope="row")= moment(agendamento.horario).format("DD/MM/YYYY - HH:mm")
+          td= agendamento.placa
+          td #{agendamento.tipo_de_veiculo.modelo} - #{agendamento.tipo_de_veiculo.marca} - #{agendamento.tipo_de_veiculo.tipo}
+          td= agendamento.gerente.nome
+          td
+            a(href="/cliente/agendamentos/"+agendamento.id) Ver 
+            a#cancelar-agendamento-js(href="/cliente/agendamentos/cancelar/"+agendamento.id) Cancelar 
+
+  script.
+    App.Cliente.Agendamentos.cancelarAgendamento();

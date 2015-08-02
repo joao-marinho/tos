@@ -38,7 +38,7 @@ function BasicModel(dao) {
 
         return new Model(modelRaw);
       });
-  }
+  };
 
   Model.all = function() {
     return dao.all().
@@ -47,7 +47,7 @@ function BasicModel(dao) {
           return new Model(modelRaw);
         });
       });
-  }
+  };
 
   Model.getOneRandom = function() {
     return dao.findOneRandom().
@@ -56,7 +56,7 @@ function BasicModel(dao) {
 
         return new Model(modelRaw);
       });
-  }
+  };
 
   Model.where = function(queryObj) {
     return dao.where(queryObj).
@@ -65,7 +65,17 @@ function BasicModel(dao) {
           return new Model(modelRaw);
         })
       });
-  }
+  };
+
+  Model.prototype.delete = function() {
+    var self = this;
+
+    return dao.delete(self.id).then(function(result) {
+      return true;
+    }, function() {
+      return false;
+    });
+  };
 
   Model.prototype.save = function() {
     var self = this;

@@ -5,6 +5,7 @@ module.exports = function(models) {
   var Agendamento = models.Agendamento;
   var TipoDeVeiculo = models.TipoDeVeiculo;
   var Gerente = models.Gerente;
+  var Cliente = models.Cliente;
 
   return {
     index: function(scope) {
@@ -17,6 +18,10 @@ module.exports = function(models) {
       .then(function(tiposDeVeiculo) {
         console.log(tiposDeVeiculo);
         scope.tiposDeVeiculo = tiposDeVeiculo;
+        return Cliente.all();
+      })
+      .then(function(clientes){
+        scope.clientes = clientes;
       });
     },
     create: function(req, res, next) {
@@ -25,7 +30,6 @@ module.exports = function(models) {
       console.log(agendamento);
 
       agendamento.horario = moment(agendamento.horario).toDate();;
-      agendamento.cliente_id = req.currentUser.id;
 
       return Gerente.getAvaliable().then(function(gerente) {
         console.log(gerente);
@@ -33,7 +37,7 @@ module.exports = function(models) {
 
         return  Agendamento.create(agendamento);
       }).then(function(agendamento) {
-        res.redirect("/cliente/agendamentos/"+agendamento.id);
+        res.redirect("/atendente/agendamentos/"+agendamento.id);
       }, function(err) {
         next(err);
       });
@@ -51,42 +55,21 @@ module.exports = function(models) {
         return TipoDeVeiculo.find(scope.agendamento.tipo_de_veiculo_id);
       }).then(function(tipo_de_veiculo){
         scope.tipo_de_veiculo = tipo_de_veiculo;
+        return Cliente.find(scope.agendamento.cliente_id);
+      }).then(function(cliente){
+        scope.cliente = cliente;
       });
-
-    },
-    lista: function(scope) {
-      var currentUser = scope.currentUser;
-      console.log(currentUser);
-      return Agendamento.where({cliente_id: currentUser.id}).then(function(agendamentos) {
-        console.log(agendamentos);
-
-        var promises = agendamentos.map(function(agendamento) {
-          return Gerente.find(agendamento.gerente_id).then(function(gerente) {
-            agendamento.gerente = gerente;
-            return agendamento;
-          }).then(function(agendamento){
-            return TipoDeVeiculo.find(agendamento.tipo_de_veiculo_id).then(function(tipo_de_veiculo){
-              agendamento.tipo_de_veiculo = tipo_de_veiculo;
-            });
-          });
-        });
-
-        scope.agendamentos = agendamentos;
-        return q.all(promises);
-      });
-
     },
     cancelar: function(req, res, next) {
       var agendamentoId = req.params.id;
-      console.log(agendamentoId);
+      console.log(req.params);
       return Agendamento.find(agendamentoId).then(function(agendamento) {
         console.log(agendamento);
         agendamento.delete().then(function(result) {
           console.log("Alguma coisa "+result)
-          res.redirect("/cliente/agendamentos");
+          res.redirect("/atendente/clientes/"+agendamento.cliente_id+"/agendamentos");
         });
       });
-
     }
   };
 

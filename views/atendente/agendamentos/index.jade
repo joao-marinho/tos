@@ -1,0 +1,55 @@
+extends ../layout
+
+block main_content
+  
+  #calendar
+  //- // Button trigger modal
+  //- button.btn.btn-primary.btn-lg(type='button', data-toggle='modal', data-target='#myModal')
+  //-   | Launch demo modal
+  //- // Modal
+  
+  #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+    form.form-horizontal(action="/atendente/agendamentos/" method="POST")
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h4#myModalLabel.modal-title Agendar Consulta
+          .modal-body
+            .form-group
+              label.col-sm-2.control-label Cliente
+              .col-sm-10
+                select.form-control(name="agendamento[cliente_id]")
+                  each cliente in clientes                   
+                    option(value="#{cliente.id}")
+                      | #{cliente.nome} - #{cliente.cpf}
+            .form-group
+              label.col-sm-2.control-label Dia:
+              .col-sm-10
+                input.form-control.js-agendamento-dia(type='text', readonly="")
+            .form-group
+              label.col-sm-2.control-label Horário:
+              .col-sm-10
+                input.form-control.js-agendamento-horario(type='text', readonly="")
+            .form-group
+              label.col-sm-2.control-label Tipo de Veículo
+              .col-sm-10
+                select.form-control(name="agendamento[tipo_de_veiculo_id]")
+                  each tipoDeVeiculo in tiposDeVeiculo                    
+                    option(value="#{tipoDeVeiculo.id}")
+                      | #{tipoDeVeiculo.tipo} - #{tipoDeVeiculo.marca} - #{tipoDeVeiculo.modelo} 
+            .form-group
+              label.col-sm-2.control-label Placa do Veículo
+              .col-sm-10
+                input.form-control(type='text', placeholder='Placa do veículo', name="agendamento[placa]")
+            .form-group
+              input.form-control.js-agendamento-datetime(type='hidden' value="" name="agendamento[horario]")
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Cancelar
+            button.btn.btn-primary(type='submit') Agendar
+  
+  script.
+    App.Atendente.Agendamentos.index(!{JSON.stringify(agendamentos)});
+    
+  

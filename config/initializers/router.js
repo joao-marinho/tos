@@ -14,10 +14,12 @@ module.exports = function(conf) {
   * Cliente
   *
   */
-  app.get("/cliente/", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
-  app.get("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
+  app.get("/cliente/", AuthenticationCliente(controllers.Cliente.Agendamentos.lista));
+  app.get("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.lista));
+  app.get("/cliente/agendamentos/index", AuthenticationCliente(controllers.Cliente.Agendamentos.index));
   app.post("/cliente/agendamentos", AuthenticationCliente(controllers.Cliente.Agendamentos.create));
   app.get("/cliente/agendamentos/:id", AuthenticationCliente(controllers.Cliente.Agendamentos.show));
+  app.get("/cliente/agendamentos/cancelar/:id", AuthenticationCliente(controllers.Cliente.Agendamentos.cancelar));
 
 
   // Sign up
@@ -138,6 +140,13 @@ module.exports = function(conf) {
   app.get("/atendente/clientes/new", AuthenticationAtendente(controllers.Atendente.Clientes.new));
   app.post("/atendente/clientes", AuthenticationAtendente(controllers.Atendente.Clientes.create));
   app.get("/atendente/clientes/:id", AuthenticationAtendente(controllers.Atendente.Clientes.show));
+  app.get("/atendente/clientes/:id/agendamentos", AuthenticationAtendente(controllers.Atendente.AgendamentosDoCliente.index));
+
+  //Agendamentos
+  app.get("/atendente/agendamentos/index", AuthenticationAtendente(controllers.Atendente.Agendamentos.index));
+  app.post("/atendente/agendamentos", AuthenticationAtendente(controllers.Atendente.Agendamentos.create));
+  app.get("/atendente/agendamentos/:id", AuthenticationAtendente(controllers.Atendente.Agendamentos.show));
+  app.get("/atendente/agendamentos/cancelar/:id", AuthenticationAtendente(controllers.Atendente.Agendamentos.cancelar));
 
   /*
   *
