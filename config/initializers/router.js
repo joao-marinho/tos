@@ -118,6 +118,7 @@ module.exports = function(conf) {
   app.get("/gerente/ordens-de-servico/:id", AuthenticationGerente(controllers.Gerente.OrdensDeServico.show));
   app.get("/gerente/ordens-de-servico/:id/complete", AuthenticationGerente(controllers.Gerente.OrdensDeServico.edit_execution));
   app.post("/gerente/ordens-de-servico/:id/complete", AuthenticationGerente(controllers.Gerente.OrdensDeServico.update_execution));
+  app.get("/gerente/ordens-de-servico/:id/authorize", AuthenticationGerente(controllers.Gerente.OrdensDeServico.authorize));
 
   /*
   *

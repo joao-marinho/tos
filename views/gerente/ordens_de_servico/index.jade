@@ -28,6 +28,9 @@ block main_content
             if ordemDeServico.status == 'Incompleto'
               | &nbsp;
               a(href="/gerente/ordens-de-servico/"+ordemDeServico.id+"/complete") Completar
+            if ordemDeServico.status == 'Criado'
+              | &nbsp;
+              a(href="/gerente/ordens-de-servico/"+ordemDeServico.id+"/authorize") Autorizar
               
 
   

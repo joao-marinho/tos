@@ -95,9 +95,13 @@ module.exports = function(conf) {
     var models = {};
     var modelFilesNames = fs.readdirSync(path.join(conf.appDir, "models"));
 
+    function modelGetter() {
+      return models;
+    }
+
     modelFilesNames.forEach(function(modelFileName) {
       var modelName = getName(modelFileName);
-      models[modelName] = require(path.join(conf.appDir, "models", modelFileName))(conf.DAO, BasicModel);
+      models[modelName] = require(path.join(conf.appDir, "models", modelFileName))(conf.DAO, BasicModel, modelGetter);
     });
 
     resolve(models);

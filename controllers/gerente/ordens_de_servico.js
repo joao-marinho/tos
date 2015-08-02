@@ -8,7 +8,9 @@ module.exports = function(models) {
 
   return {
     index: function(scope) {
-      return OrdemDeServico.all().then(function(ordensDeServico) {
+      var gerente = scope.currentUser;
+
+      return   gerente.ordensDeServico().then(function(ordensDeServico) {
         console.log(ordensDeServico);
         scope.ordensDeServico = ordensDeServico;
       });
@@ -19,6 +21,14 @@ module.exports = function(models) {
         return Tecnico.all();
       }).then(function(tecnicos) {
         scope.tecnicos = tecnicos;
+      });
+    },
+    authorize: function(req, res, next) {
+      var ordemDeServicoId = req.params.id;
+      return OrdemDeServico.find(ordemDeServicoId).then(function(ordemDeServico) {
+        return ordemDeServico.authorize();
+      }).then(function() {
+        res.redirect("/gerente/ordens-de-servico/" + ordemDeServicoId);
       });
     },
     edit_execution: function(scope) {
@@ -40,7 +50,7 @@ module.exports = function(models) {
         return ordemDeServico.save();
       })
       .then(function(ordemDeServico) {
-        res.redirect("/admin/ordens-de-servico/" + ordemDeServico.id);
+        res.redirect("/gerente/ordens-de-servico/" + ordemDeServico.id);
       });
     },
     create: function(req, res, next) {
@@ -60,7 +70,7 @@ module.exports = function(models) {
         return OrdemDeServico.create(ordemDeServico);
       })
       .then(function(ordemDeServico) {
-        res.redirect("/admin/ordens-de-servico/" + ordemDeServico.id + "/complete");
+        res.redirect("/gerente/ordens-de-servico/" + ordemDeServico.id + "/complete");
 
       }, function(err) {
         next(err);
