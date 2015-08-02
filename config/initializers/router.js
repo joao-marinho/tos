@@ -5,6 +5,7 @@ module.exports = function(conf) {
   var AuthenticationCliente = conf.middleware.AuthenticationFor("Cliente");
   var AuthenticationAtendente = conf.middleware.AuthenticationFor("Atendente");
   var AuthenticationGerente = conf.middleware.AuthenticationFor("Gerente");
+  var AuthenticationCaixa = conf.middleware.AuthenticationFor("Caixa");
 
   app.get("/", controllers.Public.index);
   app.get("/internal", controllers.Public.internal);
@@ -175,4 +176,7 @@ module.exports = function(conf) {
   //Logoff
   app.get("/caixa/sessions/delete", controllers.Caixa.Sessions.delete);
 
+  app.get("/caixa/", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.index));
+  app.get("/caixa/ordens-de-servico", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.index));
+  app.get("/caixa/ordens-de-servico/:id", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.show));
 };
