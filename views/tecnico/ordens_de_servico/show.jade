@@ -21,4 +21,12 @@ block main_content
   =cliente.nome
   br
 
+  if ordemDeServico.status == 'Autorizado'
+    a(href="/tecnico/ordens-de-servico/"+ordemDeServico.id+"/doing") Iniciar OS
+    br
+
+  if ordemDeServico.status == 'Fazendo'
+    a(href="/tecnico/ordens-de-servico/"+ordemDeServico.id+"/done") Finalizar OS
+    br
+    
   a(href="/tecnico/agenda/") Voltar

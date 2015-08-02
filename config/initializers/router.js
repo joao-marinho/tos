@@ -167,6 +167,9 @@ module.exports = function(conf) {
   app.get("/tecnico/", AuthenticationTecnico(controllers.Tecnico.Agenda.index));
   app.get("/tecnico/agenda", AuthenticationTecnico(controllers.Tecnico.Agenda.index));
   app.get("/tecnico/ordens-de-servico/:id", AuthenticationTecnico(controllers.Tecnico.OrdensDeServico.show));
+  app.get("/tecnico/ordens-de-servico/:id/doing", AuthenticationTecnico(controllers.Tecnico.OrdensDeServico.doing));
+  app.get("/tecnico/ordens-de-servico/:id/done", AuthenticationTecnico(controllers.Tecnico.OrdensDeServico.done));
+
   /*
   *
   * Caixa

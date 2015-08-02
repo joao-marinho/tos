@@ -14,6 +14,22 @@ module.exports = function(models) {
         scope.cliente = cliente;
         console.log(scope.cliente);
       });
+    },
+    doing: function(req, res, next) {
+      var ordemDeServicoId = req.params.id;
+      return OrdemDeServico.find(ordemDeServicoId).then(function(ordemDeServico) {
+        return ordemDeServico.doing();
+      }).then(function() {
+        res.redirect("/tecnico/ordens-de-servico/" + ordemDeServicoId);
+      });
+    },
+    done: function(req, res, next) {
+      var ordemDeServicoId = req.params.id;
+      return OrdemDeServico.find(ordemDeServicoId).then(function(ordemDeServico) {
+        return ordemDeServico.done();
+      }).then(function() {
+        res.redirect("/tecnico/ordens-de-servico/" + ordemDeServicoId);
+      });
     }
   };
 
