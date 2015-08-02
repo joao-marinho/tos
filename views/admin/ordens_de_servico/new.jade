@@ -1,0 +1,44 @@
+extends ../layout
+
+block main_content
+  h1 Cadastrar uma Ordem de Serviço
+
+  form.form-horizontal(action="/admin/ordens-de-servico" method="POST")
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputDataDeConclusao') Data de Conclusão
+      .col-sm-10
+        input#inputDataDeConclusao.form-control(type='text', name="ordemDeServico[data_de_conclusao]", placeholder='Data de Conclusão')
+    
+    .form-group
+      label.col-sm-2.control-label(for='inputValor') Valor
+      .col-sm-10
+        input#inputValor.form-control(type='text', name="ordemDeServico[valor]", placeholder='Valor')
+
+    .form-group
+      label.col-sm-2.control-label(for='inputCliente') Cliente
+      .col-sm-10
+        select#inputCliente.form-control(name="ordemDeServico[cliente_id]", placeholder='Escolha um cliente')
+          each cliente in clientes                    
+            option(value="#{cliente.id}")= cliente.nome
+            
+    .form-group
+      label.col-sm-2.control-label Equipe
+      .col-sm-5
+        select.form-control(name="equipe[primeiro_tecnico_id]")
+          option(value="", disabled="", selected="") Escolha um técnico
+          each tecnico in tecnicos                    
+            option(value="#{tecnico.id}")= tecnico.nome
+      .col-sm-5
+        select.form-control(name="equipe[segundo_tecnico_id]")
+          option(value="", disabled="", selected="") Escolha um técnico
+          each tecnico in tecnicos                    
+            option(value="#{tecnico.id}")= tecnico.nome
+      
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-default(type='submit') Cadastrar
+    
+    a(href="/admin/ordens-de-servico/") Voltar
+    

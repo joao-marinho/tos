@@ -77,6 +77,16 @@ function BasicModel(dao) {
     });
   };
 
+  Model.prototype.save = function() {
+    var self = this;
+
+    return dao.save(self).then(function(result) {
+      var modelRaw = result.rows[0];
+
+      return new Model(modelRaw);
+    });
+  };
+
   return Model;
 }
 
@@ -85,9 +95,13 @@ module.exports = function(conf) {
     var models = {};
     var modelFilesNames = fs.readdirSync(path.join(conf.appDir, "models"));
 
+    function modelGetter() {
+      return models;
+    }
+
     modelFilesNames.forEach(function(modelFileName) {
       var modelName = getName(modelFileName);
-      models[modelName] = require(path.join(conf.appDir, "models", modelFileName))(conf.DAO, BasicModel);
+      models[modelName] = require(path.join(conf.appDir, "models", modelFileName))(conf.DAO, BasicModel, modelGetter);
     });
 
     resolve(models);

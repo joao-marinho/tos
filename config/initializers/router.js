@@ -88,6 +88,13 @@ module.exports = function(conf) {
   app.post("/admin/tipos-de-servico", AuthenticationAdmin(controllers.Admin.TiposDeServico.create));
   app.get("/admin/tipos-de-servico/:id", AuthenticationAdmin(controllers.Admin.TiposDeServico.show));
 
+  app.get("/admin/ordens-de-servico", AuthenticationAdmin(controllers.Admin.OrdensDeServico.index));
+  app.get("/admin/ordens-de-servico/new", AuthenticationAdmin(controllers.Admin.OrdensDeServico.new));
+  app.post("/admin/ordens-de-servico", AuthenticationAdmin(controllers.Admin.OrdensDeServico.create));
+  app.get("/admin/ordens-de-servico/:id", AuthenticationAdmin(controllers.Admin.OrdensDeServico.show));
+  app.get("/admin/ordens-de-servico/:id/complete", AuthenticationAdmin(controllers.Admin.OrdensDeServico.edit_execution));
+  app.post("/admin/ordens-de-servico/:id/complete", AuthenticationAdmin(controllers.Admin.OrdensDeServico.update_execution));
+
   /*
   *
   * Gerente
@@ -104,6 +111,14 @@ module.exports = function(conf) {
   app.get("/gerente/", AuthenticationGerente(controllers.Gerente.Agenda.index));
   app.get("/gerente/agenda", AuthenticationGerente(controllers.Gerente.Agenda.index));
   app.get("/gerente/agenda/:id", AuthenticationGerente(controllers.Gerente.Agenda.show));
+
+  app.get("/gerente/ordens-de-servico", AuthenticationGerente(controllers.Gerente.OrdensDeServico.index));
+  app.get("/gerente/ordens-de-servico/new", AuthenticationGerente(controllers.Gerente.OrdensDeServico.new));
+  app.post("/gerente/ordens-de-servico", AuthenticationGerente(controllers.Gerente.OrdensDeServico.create));
+  app.get("/gerente/ordens-de-servico/:id", AuthenticationGerente(controllers.Gerente.OrdensDeServico.show));
+  app.get("/gerente/ordens-de-servico/:id/complete", AuthenticationGerente(controllers.Gerente.OrdensDeServico.edit_execution));
+  app.post("/gerente/ordens-de-servico/:id/complete", AuthenticationGerente(controllers.Gerente.OrdensDeServico.update_execution));
+  app.get("/gerente/ordens-de-servico/:id/authorize", AuthenticationGerente(controllers.Gerente.OrdensDeServico.authorize));
 
   /*
   *

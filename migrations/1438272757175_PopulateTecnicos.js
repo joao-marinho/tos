@@ -17,6 +17,15 @@ exports.up = function(pgm) {
       cpf: "'111.111.111-14'",
       password: "'123123'",
       tipo: "'tecnico'"
+    },
+    {
+      nome: "'Tecnico 3'",
+      telefone: "'1234-1234'",
+      email: "'tecnico3@tos.com'",
+      endereco: "'Rua da amargura'",
+      cpf: "'111.111.111-15'",
+      password: "'123123'",
+      tipo: "'tecnico'"
     }
   ];
 
