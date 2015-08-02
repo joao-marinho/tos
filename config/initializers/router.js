@@ -110,6 +110,13 @@ module.exports = function(conf) {
   app.get("/gerente/agenda", AuthenticationGerente(controllers.Gerente.Agenda.index));
   app.get("/gerente/agenda/:id", AuthenticationGerente(controllers.Gerente.Agenda.show));
 
+  app.get("/gerente/ordens-de-servico", AuthenticationGerente(controllers.Gerente.OrdensDeServico.index));
+  app.get("/gerente/ordens-de-servico/new", AuthenticationGerente(controllers.Gerente.OrdensDeServico.new));
+  app.post("/gerente/ordens-de-servico", AuthenticationGerente(controllers.Gerente.OrdensDeServico.create));
+  app.get("/gerente/ordens-de-servico/:id", AuthenticationGerente(controllers.Gerente.OrdensDeServico.show));
+  app.get("/gerente/ordens-de-servico/:id/complete", AuthenticationGerente(controllers.Gerente.OrdensDeServico.edit_execution));
+  app.post("/gerente/ordens-de-servico/:id/complete", AuthenticationGerente(controllers.Gerente.OrdensDeServico.update_execution));
+
   /*
   *
   * Atendente

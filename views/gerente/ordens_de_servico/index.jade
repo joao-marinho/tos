@@ -1,0 +1,33 @@
+extends ../layout
+
+block main_content
+  a(href="/gerente/ordens-de-servico/new") Cadastrar nova Ordem de Serviço
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Data de emissão
+        th Data de conclusão
+        th Valor
+        th Status
+        th Cliente
+        th Equipe
+        th Ações
+    tbody
+      each ordemDeServico in ordensDeServico
+        tr
+          th(scope="row")= ordemDeServico.id
+          td= ordemDeServico.data_de_emissao
+          td= ordemDeServico.data_de_conclusao
+          td= ordemDeServico.valor
+          td= ordemDeServico.status
+          td= ordemDeServico.cliente_id
+          td= ordemDeServico.equipe_id
+          td
+            a(href="/gerente/ordens-de-servico/"+ordemDeServico.id) Ver
+            if ordemDeServico.status == 'Incompleto'
+              | &nbsp;
+              a(href="/gerente/ordens-de-servico/"+ordemDeServico.id+"/complete") Completar
+              
+
+  

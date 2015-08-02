@@ -1,0 +1,36 @@
+extends ../layout
+
+block main_content
+  strong ID: 
+  =ordemDeServico.id
+  br
+    
+  strong Data de Emissão: 
+  =ordemDeServico.data_de_emissao
+  br
+  
+  strong Data de Conclusão: 
+  =ordemDeServico.data_de_conclusao
+  br
+
+  strong Valor: 
+  =ordemDeServico.valor
+  br
+    
+  strong Status: 
+  =ordemDeServico.status
+  br
+  
+  strong Cliente: 
+  =ordemDeServico.cliente_id
+  br
+    
+  strong Inicio da execução: 
+  =ordemDeServico.inicio_da_execucao
+  br
+  
+  strong Fim da execução: 
+  =ordemDeServico.fim_da_execucao 
+  br
+
+  a(href="/gerente/ordens-de-servico/") Voltar
