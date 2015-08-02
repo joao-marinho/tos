@@ -21,8 +21,8 @@ block main_content
   =cliente.nome
   br
   
-  
-
-
-
+  if ordemDeServico.status == 'Feito'
+    a(href="/caixa/ordens-de-servico/#{ordemDeServico.id}/pay") Marcar como paga
+    br
+      
   a(href="/caixa/ordens-de-servico/") Voltar

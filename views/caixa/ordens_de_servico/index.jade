@@ -9,6 +9,7 @@ block main_content
         th Valor
         th Status
         th Cliente
+        th Ações
     tbody
       each ordemDeServico in ordensDeServico
         tr
@@ -19,5 +20,7 @@ block main_content
           td= ordemDeServico.cliente.nome
           td
             a(href="/caixa/ordens-de-servico/"+ordemDeServico.id) Ver
+            &nbsp;
+            a(href="/caixa/ordens-de-servico/#{ordemDeServico.id}/pay") Pagar
 
   

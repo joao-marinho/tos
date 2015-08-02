@@ -35,7 +35,7 @@ module.exports = function(daos, BasicModel) {
     return self.save();
   }
 
-  OrdemDeServico.prototype.paid = function() {
+  OrdemDeServico.prototype.pay = function() {
     var self = this;
 
     // Here we should verify if is possible to authorize...

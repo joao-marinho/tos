@@ -179,4 +179,5 @@ module.exports = function(conf) {
   app.get("/caixa/", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.index));
   app.get("/caixa/ordens-de-servico", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.index));
   app.get("/caixa/ordens-de-servico/:id", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.show));
+  app.get("/caixa/ordens-de-servico/:id/pay", AuthenticationCaixa(controllers.Caixa.OrdensDeServico.pay));
 };
