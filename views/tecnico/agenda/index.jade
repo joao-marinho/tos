@@ -1,0 +1,10 @@
+extends ../layout
+
+block main_content
+  
+  #calendar
+
+  script.
+    App.Tecnico.Agenda.index(!{JSON.stringify(ordensDeServico)});
+    
+  

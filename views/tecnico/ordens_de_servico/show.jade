@@ -1,0 +1,32 @@
+extends ../layout
+
+block main_content   
+  strong Data de Emissão: 
+  =ordemDeServico.data_de_emissao
+  br
+  
+  strong Data de Conclusão: 
+  =ordemDeServico.data_de_conclusao
+  br
+
+  strong Valor: 
+  =ordemDeServico.valor
+  br
+    
+  strong Status: 
+  =ordemDeServico.status
+  br
+  
+  strong Cliente: 
+  =cliente.nome
+  br
+
+  if ordemDeServico.status == 'Autorizado'
+    a(href="/tecnico/ordens-de-servico/"+ordemDeServico.id+"/doing") Iniciar OS
+    br
+
+  if ordemDeServico.status == 'Fazendo'
+    a(href="/tecnico/ordens-de-servico/"+ordemDeServico.id+"/done") Finalizar OS
+    br
+    
+  a(href="/tecnico/agenda/") Voltar
