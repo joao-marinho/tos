@@ -7,7 +7,7 @@ module.exports = function(models) {
 
   return {
     index: function(scope) {
-      return OrdemDeServico.all().then(function(ordensDeServico) {
+      return OrdemDeServico.where({status: OrdemDeServico.STATUS_DONE}).then(function(ordensDeServico) {
         console.log(ordensDeServico);
 
         var promises = ordensDeServico.map(function(ordemDeServico) {
@@ -28,6 +28,14 @@ module.exports = function(models) {
       }).then(function(cliente){
         scope.cliente = cliente;
         console.log(scope.cliente);
+      });
+    },
+    pay: function(req, res, next) {
+      var ordemDeServicoId = req.params.id;
+      return OrdemDeServico.find(ordemDeServicoId).then(function(ordemDeServico) {
+        return ordemDeServico.pay();
+      }).then(function() {
+        res.redirect("/caixa/ordens-de-servico/" + ordemDeServicoId);
       });
     }
   };
