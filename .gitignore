@@ -3,3 +3,4 @@
 _test.js
 /public/bower_components
 /sessions/
+npm-debug.log
