@@ -6,6 +6,7 @@ module.exports = function(conf) {
   var AuthenticationAtendente = conf.middleware.AuthenticationFor("Atendente");
   var AuthenticationGerente = conf.middleware.AuthenticationFor("Gerente");
   var AuthenticationCaixa = conf.middleware.AuthenticationFor("Caixa");
+  var AuthenticationTecnico = conf.middleware.AuthenticationFor("Tecnico");
 
   app.get("/", controllers.Public.index);
   app.get("/internal", controllers.Public.internal);
@@ -163,6 +164,9 @@ module.exports = function(conf) {
   //Logoff
   app.get("/tecnico/sessions/delete", controllers.Tecnico.Sessions.delete);
 
+  app.get("/tecnico/", AuthenticationTecnico(controllers.Tecnico.Agenda.index));
+  app.get("/tecnico/agenda", AuthenticationTecnico(controllers.Tecnico.Agenda.index));
+  app.get("/tecnico/ordens-de-servico/:id", AuthenticationTecnico(controllers.Tecnico.OrdensDeServico.show));
   /*
   *
   * Caixa

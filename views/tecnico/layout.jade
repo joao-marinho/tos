@@ -1,6 +1,9 @@
 extends ../layout_with_menu
 
+block logout_button
+    li
+        a(href='/tecnico/sessions/delete') Logout
+
 block menu
   .list-group
-    a.list-group-item.active(href='#') Minha Agenda
-    a.list-group-item(href='#') Consultar OS's
+    a.list-group-item.active(href='/tecnico/agenda') Minha Agenda

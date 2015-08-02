@@ -1,0 +1,24 @@
+extends ../layout
+
+block main_content   
+  strong Data de Emissão: 
+  =ordemDeServico.data_de_emissao
+  br
+  
+  strong Data de Conclusão: 
+  =ordemDeServico.data_de_conclusao
+  br
+
+  strong Valor: 
+  =ordemDeServico.valor
+  br
+    
+  strong Status: 
+  =ordemDeServico.status
+  br
+  
+  strong Cliente: 
+  =cliente.nome
+  br
+
+  a(href="/tecnico/agenda/") Voltar
