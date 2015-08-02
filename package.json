@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node_modules/forever/bin/forever --watch --watchDirectory ./ ./bin/www"
+    "start": "node_modules/forever/bin/forever --watch --watchDirectory ./ ./bin/www",
+    "postinstall": "bower install && node_modules/node-pg-migrate/bin/pg-migrate up"
   },
   "dependencies": {
     "body-parser": "~1.12.4",
