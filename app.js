@@ -16,7 +16,9 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.locals.moment = require("moment");
+var moment = require("moment");
+moment.locale('pt-br');
+app.locals.moment = moment  ;
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));

@@ -25,5 +25,15 @@ module.exports = function(daos, BasicModel, models) {
     });
   };
 
+  Gerente.prototype.agendamentos = function() {
+    var self = this;
+    var Agendamento = models().Agendamento;
+
+    return Agendamento.where({gerente_id: self.id}).then(function(agendamentos) {
+      self.agendamentos = agendamentos;
+      return agendamentos;
+    });
+  };
+
   return Gerente;
 };
