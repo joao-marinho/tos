@@ -97,6 +97,10 @@ module.exports = function(conf) {
   app.get("/admin/ordens-de-servico/:id/complete", AuthenticationAdmin(controllers.Admin.OrdensDeServico.edit_execution));
   app.post("/admin/ordens-de-servico/:id/complete", AuthenticationAdmin(controllers.Admin.OrdensDeServico.update_execution));
 
+
+  app.get("/admin/relatorios", AuthenticationAdmin(controllers.Admin.Relatorios.index));
+  app.get("/admin/relatorios/agendamentos", AuthenticationAdmin(controllers.Admin.Relatorios.agendamentos));
+
   /*
   *
   * Gerente

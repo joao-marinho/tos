@@ -1,0 +1,27 @@
+extends ../layout
+
+block main_content
+  h1 Relatório de Agendamentos
+  each report in agendamentoReports
+    .panel.panel-primary
+      .panel-heading
+        h3.panel-title Estatísticas do gerente #{report.gerente.nome}
+      .panel-body
+        .row
+          .col-sm-5 
+            strong.pull-right Total de agendamentos realizados:
+          .col-sm-6= report.agendamentoTotal
+        hr
+        h4 Agendamentos por mês
+        each reportMonth in report.agendamentosByMonth 
+          .row
+            .col-sm-5 
+              strong.pull-right= reportMonth.monthName
+            .col-sm-6= reportMonth.agendamentos.length
+        hr
+        h4 Agendamentos por semana
+        each reportWeek in report.agendamentosByWeek 
+          .row
+            .col-sm-5 
+              strong.pull-right= reportWeek.weekName
+            .col-sm-6= reportWeek.agendamentos.length
